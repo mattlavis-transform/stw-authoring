@@ -1,0 +1,201 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+
+    {{ govukBreadcrumbs({
+  items: [
+    {
+      text: "Home",
+      href: "/"
+    },
+    {
+      text: "Content",
+      href: "/content"
+    },
+    {
+      text: content.verb + " content item " + content.id,
+      href: ""
+    }
+  ]
+}) }}
+{% endblock %}
+{% block content %}
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full">
+            <h1 class="govuk-heading-l">{{ content.verb }} content item {{ content.id }}
+            </h1>
+
+            {% if content.verb == "Approve or amend" %}
+
+            <h2 class="govuk-heading-m">Transaction details</h2>
+
+                {{ govukTable({
+                    firstCellIsHeader: true,
+                    head: [
+                        {
+                        text: "Field",
+                        classes: "column1"
+                        },
+                        {
+                        text: "Value",
+                        classes: "column2"
+                        }
+                    ],
+                    rows: [
+                        [
+                        {
+                            text: "Author"
+                        },
+                        {
+                            text: "Miriam Housego"
+                        }
+                        ],[
+                        {
+                            text: "Date / time"
+                        },
+                        {
+                            text: "12 Jan 21 14:13"
+                        }
+                        ]
+                    ]
+                    }) }}
+
+
+            <h2 class="govuk-heading-m">Content details</h2>
+
+
+                {{ govukTable({
+                    firstCellIsHeader: true,
+                    head: [
+                        {
+                        text: "Field",
+                        classes: "column1"
+                        },
+                        {
+                        text: "Value",
+                        classes: "column2"
+                        }
+                    ],
+                    rows: [
+                        [
+                        {
+                            text: "Step title"
+                        },
+                        {
+                            text: "Test data"
+                        }
+                        ],
+                        [
+                        {
+                            text: "Explanatory text"
+                        },
+                        {
+                            text: "Explanatory text"
+                        }
+                        ],
+                        [
+                        {
+                            text: "URL"
+                        },
+                        {
+                            text: "https://www.url.com"
+                        }
+                        ],
+                        [
+                        {
+                            text: "Import heading / subheading"
+                        },
+                        {
+                            text: "2. Prepare your import documents > Subheading"
+                        }
+                        ],
+                        [
+                        {
+                            text: "Export heading / subheading"
+                        },
+                        {
+                            text: "n/a"
+                        }
+                        ]
+                    ]
+                    }) }}
+
+
+
+
+                {{ govukButton({
+                    text: "Approve",
+                    href: "/content/confirmation.html"
+                }) }}
+                {{ govukButton({
+                    text: "Edit",
+                    classes: "govuk-button--secondary govuk-!-margin-left-1",
+                    href: "/content/edit/1"
+                }) }}
+                {{ govukButton({
+                    text: "Reject",
+                    classes: "govuk-button--secondary govuk-!-margin-left-1",
+                    href: "/content/reject/1"
+                }) }}
+
+            {% else %}
+
+                {{ govukTextarea({
+                    name: "more-detail",
+                    id: "more-detail",
+                    rows: 3,
+                    value: content.title,
+                    label: {
+                        text: "Step title",
+                        classes: "govuk-label--s",
+                        isPageHeading: false
+                    },
+                    hint: {
+                        text: "This is the content which will be displayed in the step's hyperlink"
+                    }
+                }) }}
+
+                {{ govukTextarea({
+                    name: "more-detail",
+                    id: "more-detail",
+                    rows: 2,
+                    value: content.explanatory_text,
+                    label: {
+                        text: "Explanatory text",
+                        classes: "govuk-label--s",
+                        isPageHeading: false
+                    },
+                    hint: {
+                        text: "Optionally, add some explanatory text to advise users further"
+                    }
+                }) }}
+
+                {{ govukTextarea({
+                    name: "url",
+                    id: "url",
+                    rows: 2,
+                    value: content.url,
+                    label: {
+                        text: "URL",
+                        classes: "govuk-label--s",
+                        isPageHeading: false
+                    },
+                    hint: {
+                        text: "Please enter the full URL including the https://"
+                    }
+                }) }}
+
+                {{ govukButton({
+                    text: content.button_verb + " content item",
+                    href: "/content/confirmation.html"
+                }) }}
+            {% endif %}
+
+        </div>
+    </div>
+
+{% endblock %}

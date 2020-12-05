@@ -16,5 +16,11 @@ $govuk-assets-path: '/govuk/assets/';
 
 // Components that aren't in Frontend
 @import "components/cookie-banner";
+@import "components/workflow";
+
+@import "../../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome";
+@import "../../../node_modules/@fortawesome/fontawesome-free/scss/brands";
+@import "../../../node_modules/@fortawesome/fontawesome-free/scss/solid";
+@import "../../../node_modules/@fortawesome/fontawesome-free/scss/regular";
 
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you

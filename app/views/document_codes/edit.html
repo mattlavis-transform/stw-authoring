@@ -1,0 +1,332 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  GOV.UK Prototype Kit
+{% endblock %}
+{% block beforeContent %}
+
+  {{ govukBreadcrumbs({
+  items: [
+    {
+      text: "Home",
+      href: "/"
+    },
+    {
+      text: "Document codes",
+      href: "/document_codes/"
+    },  
+    {
+      text: "Document code " + content.id,
+      href: ""
+    }
+  ]
+}) }}
+{% endblock %}
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-l">{{ content.verb }} document code {{ content.id }}</h1>
+
+
+
+      {% if content.verb == "Approve or amend" %}
+      
+      
+            <h2 class="govuk-heading-m">Transaction details</h2>
+
+                {{ govukTable({
+                    firstCellIsHeader: true,
+                    head: [
+                        {
+                        text: "Field",
+                        classes: "column1"
+                        },
+                        {
+                        text: "Value",
+                        classes: "column2"
+                        }
+                    ],
+                    rows: [
+                        [
+                        {
+                            text: "Author"
+                        },
+                        {
+                            text: "Josey Wales"
+                        }
+                        ],[
+                        {
+                            text: "Date / time"
+                        },
+                        {
+                            text: "12 Jan 21 14:13"
+                        }
+                        ]
+                    ]
+                    }) }}
+
+
+            <h2 class="govuk-heading-m">Content details</h2>
+
+
+                {{ govukTable({
+                    firstCellIsHeader: true,
+                    head: [
+                        {
+                        text: "Field",
+                        classes: "column1"
+                        },
+                        {
+                        text: "Value",
+                        classes: "column2"
+                        }
+                    ],
+                    rows: [
+                        [
+                        {
+                            text: "Document code overlay"
+                        },
+                        {
+                            text: "Lorem ipsum"
+                        }
+                        ],
+                        [
+                        {
+                            text: "Document code subtext"
+                        },
+                        {
+                            text: "Lorem ipsum"
+                        }
+                        ],
+                        [
+                        {
+                            text: "Link URL"
+                        },
+                        {
+                            text: "https://www.lipsum.com"
+                        }
+                        ],
+                        [
+                        {
+                            text: "Link text"
+                        },
+                        {
+                            text: "Some text"
+                        }
+                        ],
+                        [
+                        {
+                            text: "Document code overlay (Welsh)"
+                        },
+                        {
+                            text: "Lorem ipswm"
+                        }
+                        ],
+                        [
+                        {
+                            text: "Document code subtext (Welsh)"
+                        },
+                        {
+                            text: "Lorem ipswm"
+                        }
+                        ],
+                        [
+                        {
+                            text: "Link URL (Welsh)"
+                        },
+                        {
+                            text: "https://www.lipswm.com"
+                        }
+                        ],
+                        [
+                        {
+                            text: "Link text (Welsh)"
+                        },
+                        {
+                            text: "Swm text"
+                        }
+                        ]
+                        
+                    ]
+                    }) }}
+
+
+
+
+                {{ govukButton({
+                    text: "Approve",
+                    href: "/document_codes/confirmation.html"
+                }) }}
+                {{ govukButton({
+                    text: "Edit",
+                    classes: "govuk-button--secondary govuk-!-margin-left-1",
+                    href: "/document_codes/edit/C640"
+                }) }}
+                {{ govukButton({
+                    text: "Reject",
+                    classes: "govuk-button--secondary govuk-!-margin-left-1",
+                    href: "/document_codes/reject/1"
+                }) }}
+
+
+
+
+      {% else %}
+            {{ govukTable({
+        firstCellIsHeader: true,
+        classes: "govuk-table--mx",
+        caption: "About this document code",
+        head: [],
+        rows: [
+          [
+            {
+              text: "Document code"
+            },
+            {
+              text: "9100"
+            }
+          ],
+          [
+            {
+              text: "Description"
+            },
+            {
+              text: "National Document: Firearms: Open individual licence or Specific individual licence. Nuclear materials open individual licence or specific individual licence"
+            }
+          ]
+        ]
+      }) }}
+
+        <h1 class='govuk-heading-m'>{{ content.verb }} the document code</h1>
+        {{ govukTextarea({
+        name: "more-detail",
+        id: "more-detail",
+        rows: 3,
+        label: {
+          text: " Document code description overlay",
+          classes: "govuk-label--s",
+          isPageHeading: true
+        },
+        hint: {
+          text: "Optionally, you may override the document code description for display within complex measures."
+        }
+      }) }}
+
+        {{ govukTextarea({
+        name: "more-detail",
+        id: "more-detail",
+        rows: 3,
+        label: {
+          text: "Document code subtext",
+          classes: "govuk-label--s",
+          isPageHeading: true
+        },
+        hint: {
+          text: "Optionally, you may include additional text to help to explain the purpose of the document code within complex measures."
+        }
+      }) }}
+
+        {{ govukInput({
+        label: {
+          text: "Link URL",
+          classes: "govuk-label--s",
+          isPageHeading: falsee
+        },
+        id: "event-name",
+        name: "event-name",
+        classes: "govuk-!-width-two-thirds",
+        hint: {
+          text: "If you want to link to an external resource, specify that here. If you do not sepcify a Welsh URL,
+          then this URL will also be used for the Welsh version."
+          }
+      }) }}
+
+        {{ govukInput({
+        label: {
+          text: "Link text",
+          classes: "govuk-label--s",
+          isPageHeading: falsee
+        },
+        id: "event-name",
+        name: "event-name",
+        classes: "govuk-!-width-two-thirds",
+        hint: {
+          text: "If you specify a link, then this is the text that will appear on that link."
+          }
+      }) }}
+
+        <details class="govuk-details" data-module="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+            Update Welsh content equivalents 
+          </span>
+          </summary>
+          <div class="govuk-details__text">
+
+            {{ govukTextarea({
+              name: "more-detail",
+              id: "more-detail",
+              rows: 3,
+              label: {
+                text: "Document code description overlay (Welsh)",
+                classes: "govuk-label--s",
+                isPageHeading: true
+              },
+              hint: {
+                text: "Optionally, you may override the document code description for display within complex measures."
+              }
+            }) }}
+
+            {{ govukTextarea({
+                name: "more-detail",
+                id: "more-detail",
+                rows: 3,
+                label: {
+                  text: " Document code subtext (Welsh)",
+                  classes: "govuk-label--s",
+                  isPageHeading: true
+                },
+                hint: {
+                  text: "Optionally, you may include additional text to help to explain the purpose of the document code within complex measures."
+                }
+              }) }}
+
+            {{ govukInput({
+              label: {
+                text: "Link URL",
+                classes: "govuk-label--s",
+                isPageHeading: falsee
+              },
+              id: "event-name",
+              name: "event-name",
+              classes: "govuk-!-width-two-thirds",
+              hint: {
+                text: "Leave this blank to use the URL specified in the English version of the text"
+                }
+            }) }}
+
+            {{ govukInput({
+              label: {
+                text: "Link text",
+                classes: "govuk-label--s",
+                isPageHeading: falsee
+              },
+              id: "event-name",
+              name: "event-name",
+              classes: "govuk-!-width-two-thirds"
+            }) }}
+
+          </div>
+        </details>
+
+        {{ govukButton({
+          text: content.button_verb + " document code"
+        }) }}
+
+      {% endif %}
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,4 +1,3 @@
-
 {% extends "layout.html" %}
 
 {% block pageTitle %}
@@ -8,37 +7,49 @@
 {% block content %}
 
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-xl">
-        The GOV.UK Prototype Kit
-        <span class="govuk-caption-xl">{{releaseVersion}}</span>
-      </h1>{{releaseVersion | log }}
-      <p>
-        This kit lets you rapidly create HTML prototypes of GOV.UK services.
-      </p>
-
-      <p>
-        It contains all you need to prototype anything from simple static pages to complex, data-driven transactions.
-      </p>
-
-      <h2 class="govuk-heading-m">About this page</h2>
-
-      <p>We recommend you add links to your prototype to this page, rather than delete it.
-        You'll find this page in the kit at '/app/views/index.html'.</p>
-
-      <p>You can change the service name by editing the file '/app/config.js'.</p>
-
-      <h2 class="govuk-heading-m">Examples and documentation</h2>
-
-      <ul class="govuk-list govuk-list--bullet">
-        <li>
-          <a href="/docs/tutorials-and-examples">Example pages and documentation</a>
-        </li>
-        <li>
-          <a href="https://design-system.service.gov.uk">GOV.UK Design System</a>
-        </li>
-      </ul>
+    <div class="govuk-grid-column-three-quarters">
+      <h1 class="govuk-heading-l">Main menu</h1>
     </div>
+  </div>
+  <div class="govuk-grid-row">
+
+    <div class="govuk-grid-column-one-half">
+      <h2 class="govuk-heading-m">Content</h2>
+      <p>
+        <a href="/content/edit">Create new content</a>
+      </p>
+      <p>
+        <a href="/content/">View existing content</a>
+      </p>
+
+      <h2 class="govuk-heading-m">Tariff entities</h2>
+      <p>
+        <a href="">Sections</a>
+      </p>
+
+      <p>
+        <a href="">Chapters</a>
+      </p>
+
+      <p>
+        <a href="">Commodity codes</a>
+      </p>
+
+      <p>
+        <a href="/measure_types/">Measure types</a>
+      </p>
+
+      <p>
+        <a href="/document_codes/">Document codes</a>
+      </p>
+    </div>
+    <div class="govuk-grid-column-one-half">
+      <h2 class="govuk-heading-m">My workstack</h2>
+      <p>
+        <a href="/workstack.html">Show my workstack</a> <span class="count">3</span>
+      </p>
+    </div>
+
   </div>
 
 {% endblock %}

@@ -1,0 +1,83 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  GOV.UK Prototype Kit
+{% endblock %}
+{% block beforeContent %}
+
+  {{ govukBreadcrumbs({
+  items: [
+    {
+      text: "Home",
+      href: "/"
+    },
+    {
+      text: "Measure types",
+      href: ""
+    }
+  ]
+}) }}
+{% endblock %}
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-l">Measure types</h1>
+      {{ govukInsetText({
+                text: "This page lists all of the measure types that are available to augment with user-centred content. Click on the measure type title to amend the overlay text in English and Welsh. "
+            }) }}
+
+      {{ govukTable({
+  firstCellIsHeader: true,
+  classes: "govuk-table--m",
+  caption: "Current measure types",
+  head: [
+    {
+      text: "ID"
+    },
+    {
+      text: "Description"
+    },
+    {
+      text: "Overlay text"
+    },
+    {
+      text: "Overlay text (Welsh)"
+    }
+  ],
+  rows: [
+    [
+      {
+        text: "103"
+      },
+      {
+        html: "<a href='/measure_types/edit/103'>Third country duty</a>"
+      },
+      {
+        text: "The duty that is for third countries"
+      },
+      {
+        html: 'Y ddyletswydd sydd ar gyfer trydydd gwledydd'
+      }
+    ],
+    [
+      {
+        text: "105"
+      },
+      {
+        html: "<a href='/measure_types/edit/105'>Third country duty under authorised use</a>"
+      },
+      {
+        text: "Lorem ipsum"
+      },
+      {
+        html: 'Llorem ipswm'
+      }
+    ]
+  ]
+}) }}
+
+    </div>
+  </div>
+
+{% endblock %}

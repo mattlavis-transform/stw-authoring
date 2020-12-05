@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  GOV.UK Prototype Kit
+{% endblock %}
+{% block beforeContent %}
+
+    {{ govukBreadcrumbs({
+  items: [
+    {
+      text: "Home",
+      href: "/"
+    },
+    {
+      text: "Document codes",
+      href: ""
+    }
+  ]
+}) }}
+{% endblock %}
+{% block content %}
+
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full">
+            <h1 class="govuk-heading-l">Document codes</h1>
+            {{ govukInsetText({
+                text: "This page lists all of the document codes that are available to augment with user-centred content. Click on the document code description to amend the overlay text in English and Welsh. "
+            }) }}
+
+            {{ govukTable({
+  firstCellIsHeader: true,
+  classes: "govuk-table--m",
+  caption: "Current Document codes",
+  head: [
+    {
+      text: "ID"
+    },
+    {
+      text: "Description"
+    },
+    {
+      text: "Overlay text"
+    },
+    {
+      text: "Overlay text (Welsh)"
+    }
+  ],
+  rows: [
+    [
+      {
+        text: "9100"
+      },
+      {
+        html: "<a href='/document_codes/edit/9100'>National Document: Firearms: Open individual licence or Specific individual licence. Nuclear materials open individual licence or specific individual licence</a>"
+      },
+      {
+        text: "a bomb and death ray permit"
+      },
+      {
+        html: 'caniatâd bom a phelydr marwolaeth'
+      }
+    ]
+  ]
+}) }}
+
+        </div>
+    </div>
+
+   
+
+{% endblock %}

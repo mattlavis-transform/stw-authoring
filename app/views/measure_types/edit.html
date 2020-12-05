@@ -1,0 +1,135 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  GOV.UK Prototype Kit
+{% endblock %}
+{% block beforeContent %}
+
+    {{ govukBreadcrumbs({
+  items: [
+    {
+      text: "Home",
+      href: "/"
+    },
+    {
+      text: "Measure types",
+      href: "/measure_types/"
+    },  
+    {
+      text: "Measure type 103",
+      href: ""
+    }
+  ]
+}) }}
+{% endblock %}
+{% block content %}
+
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full">
+            <h1 class="govuk-heading-l">Measure type {{ content.id }}</h1>
+            {{ govukInsetText({
+                text: "Use this screen to update the user-centred text overlays for this measure type."
+            }) }}
+
+            {{ govukTable({
+  firstCellIsHeader: true,
+  classes: "govuk-table--mx",
+  caption: "About this measure type",
+  head: [],
+  rows: [
+    [
+      {
+        text: "Measure type"
+      },
+      {
+        text: "103"
+      }
+    ],
+    [
+      {
+        text: "Description"
+      },
+      {
+        text: "Third country duty"
+      }
+    ]
+  ]
+}) }}
+<h1 class='govuk-heading-m'>Edit the measure type</h1>
+{{ govukTextarea({
+  name: "more-detail",
+  id: "more-detail",
+  rows: 3,
+  label: {
+    text: " Measure type description overlay",
+    classes: "govuk-label--s",
+    isPageHeading: true
+  },
+  hint: {
+    text: "Optionally, you may override the measure type description for display within complex measures."
+  }
+}) }}
+
+{{ govukTextarea({
+  name: "more-detail",
+  id: "more-detail",
+  rows: 3,
+  label: {
+    text: " Measure type subtext",
+    classes: "govuk-label--s",
+    isPageHeading: true
+  },
+  hint: {
+    text: "Optionally, you may include additional text to help to explain the purpose of the measure type within complex measures."
+  }
+}) }}
+
+
+<details class="govuk-details" data-module="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      Update Welsh content equivalents 
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+    
+    {{ govukTextarea({
+  name: "more-detail",
+  id: "more-detail",
+  rows: 3,
+  label: {
+    text: " Measure type description overlay (Welsh)",
+    classes: "govuk-label--s",
+    isPageHeading: true
+  },
+  hint: {
+    text: "Optionally, you may override the measure type description for display within complex measures."
+  }
+}) }}
+
+{{ govukTextarea({
+  name: "more-detail",
+  id: "more-detail",
+  rows: 3,
+  label: {
+    text: " Measure type subtext (Welsh)",
+    classes: "govuk-label--s",
+    isPageHeading: true
+  },
+  hint: {
+    text: "Optionally, you may include additional text to help to explain the purpose of the measure type within complex measures."
+  }
+}) }}
+  </div>
+</details>
+
+
+{{ govukButton({
+  text: "Update measure type"
+}) }}
+        </div>
+    </div>
+
+   
+
+{% endblock %}

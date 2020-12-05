@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+
+    {{ govukBreadcrumbs({
+  items: [
+    {
+      text: "Home",
+      href: "/"
+    },
+    {
+      text: "Content",
+      href: "/content"
+    },
+    {
+      text: "Confirmation",
+      href: ""
+    }
+  ]
+}) }}
+{% endblock %}
+{% block content %}
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full">
+
+            {{ govukPanel({
+            titleText: "Content item 1 has been successfully updated",
+            html: "Change awaiting approval"
+            }) }}
+
+            <h2 class="govuk-heading-m">Next steps</h2>
+
+            <p class="govuk-body">
+                <a class="govuk-link" href="/content/edit/1">View this content item</a>
+            </p>
+            <p class="govuk-body">
+                <a class="govuk-link" href="/content">View all content</a>
+            </p>
+
+        </div>
+    </div>
+
+{% endblock %}

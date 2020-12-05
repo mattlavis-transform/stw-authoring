@@ -1,0 +1,116 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  GOV.UK Prototype Kit
+{% endblock %}
+{% block beforeContent %}
+
+  {{ govukBreadcrumbs({
+  items: [
+    {
+      text: "Home",
+      href: "/"
+    },
+    {
+      text: "Content",
+      href: ""
+    }
+  ]
+}) }}
+{% endblock %}
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-l">Content</h1>
+
+      {{ govukInsetText({
+          text: "This page lists all of the content that can be assifgned to the various objects in the Tariff."
+      }) }}
+
+      {{ govukTable({
+      firstCellIsHeader: false,
+      classes: "govuk-table--s",
+      caption: "Current content",
+      head: [
+        {
+          text: "ID"
+        },
+        {
+          text: "Lock",
+          classes: "c"
+        },
+        {
+          text: "Content"
+        },
+        {
+          text: "Trade type / heading"
+        },
+        {
+          text: "Linked to"
+        },
+        {
+          text: "Actions"
+        }
+      ],
+      rows: [
+        [
+          {
+            text: "1"
+          },
+          {
+            text: ""
+          },
+          {
+            html: "<b>Test data</b><br>
+              Explanatory text<br>
+              https://www.url.com"
+          },
+          {
+            html: "<b>IMPORT</b><br>
+              Get your business ready for import > Before you import, you need to: "
+          },
+          {
+            text: " Not restricted to any database entities "
+          },
+          {
+            html: '<a href="/content/edit/1">View / edit content</a><br>
+              <a href="">Add link to content</a><br>
+              <a href="">Delete content</a>',
+            classes: "nowrap"
+          }
+        ],
+        [
+          {
+            text: "1"
+          },
+          {
+            html: '<i class="fas fa-lock"></i>',
+            classes: "c"
+          },
+          {
+            html: "<b>Test data</b><br>
+              Explanatory text<br>
+              https://www.url.com"
+          },
+          {
+            html: "<b>IMPORT</b><br>
+              Get your business ready for import > Before you import, you need to: "
+          },
+          {
+            text: " Not restricted to any database entities "
+          },
+          {
+            html: '<a href="/content/edit/1">View / edit content</a><br>
+              <a href="">Add link to content</a><br>
+              <a href="">Delete content</a>',
+            classes: "nowrap"
+          }
+        ]
+      ]
+    }) }}
+
+    </div>
+  </div>
+
+{% endblock %}
