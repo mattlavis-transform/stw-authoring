@@ -31,7 +31,7 @@
 
             {% if content.verb == "Approve or amend" %}
 
-            <h2 class="govuk-heading-m">Transaction details</h2>
+                <h2 class="govuk-heading-m">Transaction details</h2>
 
                 {{ govukTable({
                     firstCellIsHeader: true,
@@ -64,9 +64,7 @@
                     ]
                     }) }}
 
-
-            <h2 class="govuk-heading-m">Content details</h2>
-
+                <h2 class="govuk-heading-m">Content details</h2>
 
                 {{ govukTable({
                     firstCellIsHeader: true,
@@ -124,22 +122,19 @@
                     ]
                     }) }}
 
-
-
-
                 {{ govukButton({
                     text: "Approve",
-                    href: "/content/confirmation.html"
+                    href: "/content/approved/" + content.id
                 }) }}
                 {{ govukButton({
-                    text: "Edit",
+                    text: "Amend",
                     classes: "govuk-button--secondary govuk-!-margin-left-1",
-                    href: "/content/edit/1"
+                    href: "/content/edit_elevated/" + content.id
                 }) }}
                 {{ govukButton({
                     text: "Reject",
                     classes: "govuk-button--secondary govuk-!-margin-left-1",
-                    href: "/content/reject/1"
+                    href: "/content/reject/" + content.id
                 }) }}
 
             {% else %}
@@ -189,10 +184,22 @@
                     }
                 }) }}
 
-                {{ govukButton({
-                    text: content.button_verb + " content item",
-                    href: "/content/confirmation.html"
-                }) }}
+                {% if content.locked %}
+                    <p class="govuk-body">
+                        <i class="fas fa-lock"></i>&nbsp;&nbsp;&nbsp;This record is locked for editing, as it has already been submitted into workflow.</p>
+                {% else %}
+                    {% if content.privileges == "standard" or content.id == "" %}
+                    {{ govukButton({
+                        text: content.button_verb + " content item",
+                        href: "/content/confirmation/" + content.id
+                    }) }}
+                    {% else %}
+                    {{ govukButton({
+                        text: content.button_verb + " content item",
+                        href: "/content/confirmation_elevated/" + content.id
+                    }) }}
+                    {% endif %}
+                {% endif %}
             {% endif %}
 
         </div>

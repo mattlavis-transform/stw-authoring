@@ -30,10 +30,15 @@
             {{ govukTable({
   firstCellIsHeader: true,
   classes: "govuk-table--m",
-  caption: "Current Document codes",
+  caption: "Current document codes",
+  captionClasses: "govuk-table__caption--l",
   head: [
     {
       text: "ID"
+    },
+    {
+      text: "Lock",
+      classes: "c"
     },
     {
       text: "Description"
@@ -51,6 +56,10 @@
         text: "9100"
       },
       {
+        html: '<i class="fas fa-lock"></i>',
+        classes: "c"
+      },
+      {
         html: "<a href='/document_codes/edit/9100'>National Document: Firearms: Open individual licence or Specific individual licence. Nuclear materials open individual licence or specific individual licence</a>"
       },
       {
@@ -58,6 +67,23 @@
       },
       {
         html: 'caniatâd bom a phelydr marwolaeth'
+      }
+    ],
+    [
+      {
+        text: "C640"
+      },
+      {
+        text: ""
+      },
+      {
+        html: "<a href='/document_codes/edit/C640'>Common Health Entry Document for Animals (CHED-A) (as set out in Part 2, Section A of Annex II to Commission Implementing Regulation (EU) 2019/1715 (OJ L 261))</a>"
+      },
+      {
+        text: "Lorem ipsum"
+      },
+      {
+        html: 'Llorem ipswm'
       }
     ]
   ]

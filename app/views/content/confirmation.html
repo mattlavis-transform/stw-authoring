@@ -17,7 +17,11 @@
       href: "/content"
     },
     {
-      text: "Confirmation",
+      text: "Content item " + content.id,
+      href: "/content/edit/" + content.id
+    },
+    {
+      text: content.action,
       href: ""
     }
   ]
@@ -28,19 +32,17 @@
         <div class="govuk-grid-column-full">
 
             {{ govukPanel({
-            titleText: "Content item 1 has been successfully updated",
-            html: "Change awaiting approval"
+              titleText: content.message1,
+              html: content.message2
             }) }}
 
             <h2 class="govuk-heading-m">Next steps</h2>
 
+            {% for link in content.links %}
             <p class="govuk-body">
-                <a class="govuk-link" href="/content/edit/1">View this content item</a>
+                <a class="govuk-link" href="{{ link.url }}">{{ link.text }}</a>
             </p>
-            <p class="govuk-body">
-                <a class="govuk-link" href="/content">View all content</a>
-            </p>
-
+            {% endfor %}
         </div>
     </div>
 

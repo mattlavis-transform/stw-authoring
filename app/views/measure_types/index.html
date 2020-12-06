@@ -31,9 +31,14 @@
   firstCellIsHeader: true,
   classes: "govuk-table--m",
   caption: "Current measure types",
+  captionClasses: "govuk-table__caption--l",
   head: [
     {
       text: "ID"
+    },
+    {
+      text: "Lock",
+      classes: "c"
     },
     {
       text: "Description"
@@ -51,6 +56,10 @@
         text: "103"
       },
       {
+        html: '<i class="fas fa-lock"></i>',
+        classes: "c"
+      },
+      {
         html: "<a href='/measure_types/edit/103'>Third country duty</a>"
       },
       {
@@ -63,6 +72,10 @@
     [
       {
         text: "105"
+      },
+      {
+        html: '',
+        classes: "c"
       },
       {
         html: "<a href='/measure_types/edit/105'>Third country duty under authorised use</a>"

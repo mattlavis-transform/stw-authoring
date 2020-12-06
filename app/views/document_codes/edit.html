@@ -28,152 +28,7 @@
     <div class="govuk-grid-column-full">
       <h1 class="govuk-heading-l">{{ content.verb }} document code {{ content.id }}</h1>
 
-
-
-      {% if content.verb == "Approve or amend" %}
-      
-      
-            <h2 class="govuk-heading-m">Transaction details</h2>
-
-                {{ govukTable({
-                    firstCellIsHeader: true,
-                    head: [
-                        {
-                        text: "Field",
-                        classes: "column1"
-                        },
-                        {
-                        text: "Value",
-                        classes: "column2"
-                        }
-                    ],
-                    rows: [
-                        [
-                        {
-                            text: "Author"
-                        },
-                        {
-                            text: "Josey Wales"
-                        }
-                        ],[
-                        {
-                            text: "Date / time"
-                        },
-                        {
-                            text: "12 Jan 21 14:13"
-                        }
-                        ]
-                    ]
-                    }) }}
-
-
-            <h2 class="govuk-heading-m">Content details</h2>
-
-
-                {{ govukTable({
-                    firstCellIsHeader: true,
-                    head: [
-                        {
-                        text: "Field",
-                        classes: "column1"
-                        },
-                        {
-                        text: "Value",
-                        classes: "column2"
-                        }
-                    ],
-                    rows: [
-                        [
-                        {
-                            text: "Document code overlay"
-                        },
-                        {
-                            text: "Lorem ipsum"
-                        }
-                        ],
-                        [
-                        {
-                            text: "Document code subtext"
-                        },
-                        {
-                            text: "Lorem ipsum"
-                        }
-                        ],
-                        [
-                        {
-                            text: "Link URL"
-                        },
-                        {
-                            text: "https://www.lipsum.com"
-                        }
-                        ],
-                        [
-                        {
-                            text: "Link text"
-                        },
-                        {
-                            text: "Some text"
-                        }
-                        ],
-                        [
-                        {
-                            text: "Document code overlay (Welsh)"
-                        },
-                        {
-                            text: "Lorem ipswm"
-                        }
-                        ],
-                        [
-                        {
-                            text: "Document code subtext (Welsh)"
-                        },
-                        {
-                            text: "Lorem ipswm"
-                        }
-                        ],
-                        [
-                        {
-                            text: "Link URL (Welsh)"
-                        },
-                        {
-                            text: "https://www.lipswm.com"
-                        }
-                        ],
-                        [
-                        {
-                            text: "Link text (Welsh)"
-                        },
-                        {
-                            text: "Swm text"
-                        }
-                        ]
-                        
-                    ]
-                    }) }}
-
-
-
-
-                {{ govukButton({
-                    text: "Approve",
-                    href: "/document_codes/confirmation.html"
-                }) }}
-                {{ govukButton({
-                    text: "Edit",
-                    classes: "govuk-button--secondary govuk-!-margin-left-1",
-                    href: "/document_codes/edit/C640"
-                }) }}
-                {{ govukButton({
-                    text: "Reject",
-                    classes: "govuk-button--secondary govuk-!-margin-left-1",
-                    href: "/document_codes/reject/1"
-                }) }}
-
-
-
-
-      {% else %}
-            {{ govukTable({
+        {{ govukTable({
         firstCellIsHeader: true,
         classes: "govuk-table--mx",
         caption: "About this document code",
@@ -184,7 +39,7 @@
               text: "Document code"
             },
             {
-              text: "9100"
+              text: content.id
             }
           ],
           [
@@ -197,6 +52,142 @@
           ]
         ]
       }) }}
+
+      {% if content.verb == "Approve or amend" %}
+
+        <h2 class="govuk-heading-m">Transaction details</h2>
+
+        {{ govukTable({
+          firstCellIsHeader: false,
+          head: [
+              {
+              text: "Field",
+              classes: "column1"
+              },
+              {
+              text: "Value",
+              classes: "column2"
+              }
+          ],
+          rows: [
+              [
+              {
+                  text: "Author"
+              },
+              {
+                  text: "Josey Wales"
+              }
+              ],[
+              {
+                  text: "Date / time"
+              },
+              {
+                  text: "12 Jan 21 14:13"
+              }
+              ]
+          ]
+          }) }}
+
+        <h2 class="govuk-heading-m">Content details</h2>
+
+        {{ govukTable({
+          firstCellIsHeader: false,
+          head: [
+              {
+              text: "Field",
+              classes: "column1"
+              },
+              {
+              text: "Value",
+              classes: "column2"
+              }
+          ],
+          rows: [
+              [
+              {
+                  text: "Document code overlay"
+              },
+              {
+                  text: "Lorem ipsum"
+              }
+              ],
+              [
+              {
+                  text: "Document code subtext"
+              },
+              {
+                  text: "Lorem ipsum"
+              }
+              ],
+              [
+              {
+                  text: "Link URL"
+              },
+              {
+                  text: "https://www.lipsum.com"
+              }
+              ],
+              [
+              {
+                  text: "Link text"
+              },
+              {
+                  text: "Some text"
+              }
+              ],
+              [
+              {
+                  text: "Document code overlay (Welsh)"
+              },
+              {
+                  text: "Llorem ipswm"
+              }
+              ],
+              [
+              {
+                  text: "Document code subtext (Welsh)"
+              },
+              {
+                  text: "Llorem ipswm"
+              }
+              ],
+              [
+              {
+                  text: "Link URL (Welsh)"
+              },
+              {
+                  text: "https://www.lipswm.com"
+              }
+              ],
+              [
+              {
+                  text: "Link text (Welsh)"
+              },
+              {
+                  text: "Swm text"
+              }
+              ]
+              
+          ]
+          }) }}
+
+        {{ govukButton({
+            text: "Approve",
+            href: "/document_codes/approved/" + content.id
+        }) }}
+        {{ govukButton({
+            text: "Amend",
+            classes: "govuk-button--secondary govuk-!-margin-left-1",
+            href: "/document_codes/edit_approve/" + content.id
+        }) }}
+        {{ govukButton({
+            text: "Reject",
+            classes: "govuk-button--secondary govuk-!-margin-left-1",
+            href: "/document_codes/reject/" + content.id
+        }) }}
+
+      {% else %}
+
 
         <h1 class='govuk-heading-m'>{{ content.verb }} the document code</h1>
         {{ govukTextarea({
@@ -259,8 +250,8 @@
         <details class="govuk-details" data-module="govuk-details">
           <summary class="govuk-details__summary">
             <span class="govuk-details__summary-text">
-            Update Welsh content equivalents 
-          </span>
+              Welsh content equivalents 
+            </span>
           </summary>
           <div class="govuk-details__text">
 
@@ -320,9 +311,15 @@
           </div>
         </details>
 
-        {{ govukButton({
-          text: content.button_verb + " document code"
+        {% if content.locked %}
+          <p class="govuk-body">
+            <i class="fas fa-lock"></i>&nbsp;&nbsp;&nbsp;This record is locked for editing, as it has already been submitted into workflow.</p>
+        {% else %}
+          {{ govukButton({
+          text: content.button_verb + " document code",
+          href: "/document_codes/confirmation/" + content.id
         }) }}
+        {% endif %}
 
       {% endif %}
 

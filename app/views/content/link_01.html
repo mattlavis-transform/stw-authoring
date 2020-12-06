@@ -1,0 +1,110 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+
+    {{ govukBreadcrumbs({
+  items: [
+    {
+      text: "Home",
+      href: "/"
+    },
+    {
+      text: "Content",
+      href: "/content"
+    },
+    {
+      text: "Content item " + content.id,
+      href: "/content/edit/" + content.id
+    },
+    {
+      text: "Link content",
+      href: ""
+    }
+  ]
+}) }}
+{% endblock %}
+{% block content %}
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full">
+            <h1 class="govuk-heading-l">Add link to content item {{ content.id }}
+            </h1>
+
+            {{ govukTable({
+  firstCellIsHeader: true,
+  head: [],
+  rows: [
+    [
+      {
+        text: "ID"
+      },
+      {
+        text: "1"
+      }
+    ],
+    [
+      {
+        text: "Step title"
+      },
+      {
+        text: "Some test data"
+      }
+    ],
+    [
+      {
+        text: "Explanatory text"
+      },
+      {
+        text: "Some test data"
+      }
+    ],
+    [
+      {
+        text: "URL"
+      },
+      {
+        text: "https://www.url.com"
+      }
+    ]
+  ]
+}) }}
+
+            {{ govukRadios({
+  idPrefix: "where-do-you-live",
+  name: "where-do-you-live",
+  fieldset: {
+    legend: {
+      text: "Select the type of object to which you would like to link this content item",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--m"
+    }
+  },
+  items: [
+    {
+      value: "section",
+      text: "Section"
+    },
+    {
+      value: "chapter",
+      text: "Chapter"
+    },
+    {
+      value: "commodity",
+      text: "Commodity code"
+    }
+  ]
+}) }}
+
+
+{{ govukButton({
+  text: "Continue",
+  href: "/content/link2/1"
+}) }}
+
+        </div>
+    </div>
+
+{% endblock %}

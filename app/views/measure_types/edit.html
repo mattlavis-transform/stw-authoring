@@ -5,7 +5,7 @@
 {% endblock %}
 {% block beforeContent %}
 
-    {{ govukBreadcrumbs({
+  {{ govukBreadcrumbs({
   items: [
     {
       text: "Home",
@@ -24,112 +24,218 @@
 {% endblock %}
 {% block content %}
 
-    <div class="govuk-grid-row">
-        <div class="govuk-grid-column-full">
-            <h1 class="govuk-heading-l">Measure type {{ content.id }}</h1>
-            {{ govukInsetText({
-                text: "Use this screen to update the user-centred text overlays for this measure type."
-            }) }}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <h1 class="govuk-heading-l">Measure type {{ content.id }}</h1>
+      {% if content.verb == "Approve or amend" %}
 
-            {{ govukTable({
-  firstCellIsHeader: true,
-  classes: "govuk-table--mx",
-  caption: "About this measure type",
-  head: [],
-  rows: [
-    [
-      {
-        text: "Measure type"
-      },
-      {
-        text: "103"
-      }
-    ],
-    [
-      {
-        text: "Description"
-      },
-      {
-        text: "Third country duty"
-      }
-    ]
-  ]
-}) }}
-<h1 class='govuk-heading-m'>Edit the measure type</h1>
-{{ govukTextarea({
-  name: "more-detail",
-  id: "more-detail",
-  rows: 3,
-  label: {
-    text: " Measure type description overlay",
-    classes: "govuk-label--s",
-    isPageHeading: true
-  },
-  hint: {
-    text: "Optionally, you may override the measure type description for display within complex measures."
-  }
-}) }}
+        <h2 class="govuk-heading-m">Transaction details</h2>
 
-{{ govukTextarea({
-  name: "more-detail",
-  id: "more-detail",
-  rows: 3,
-  label: {
-    text: " Measure type subtext",
-    classes: "govuk-label--s",
-    isPageHeading: true
-  },
-  hint: {
-    text: "Optionally, you may include additional text to help to explain the purpose of the measure type within complex measures."
-  }
-}) }}
+        {{ govukTable({
+          firstCellIsHeader: false,
+          head: [
+              {
+              text: "Field",
+              classes: "column1"
+              },
+              {
+              text: "Value",
+              classes: "column2"
+              }
+          ],
+          rows: [
+              [
+              {
+                  text: "Author"
+              },
+              {
+                  text: "Barney Rubble"
+              }
+              ],[
+              {
+                  text: "Date / time"
+              },
+              {
+                  text: "12 Jan 21 12:13"
+              }
+              ]
+          ]
+          }) }}
 
+        <h2 class="govuk-heading-m">Content details</h2>
 
-<details class="govuk-details" data-module="govuk-details">
-  <summary class="govuk-details__summary">
-    <span class="govuk-details__summary-text">
-      Update Welsh content equivalents 
+        {{ govukTable({
+          firstCellIsHeader: false,
+          head: [
+              {
+              text: "Field",
+              classes: "column1"
+              },
+              {
+              text: "Value",
+              classes: "column2"
+              }
+          ],
+          rows: [
+              [
+              {
+                  text: "Measure type overlay"
+              },
+              {
+                  text: "Lorem ipsum"
+              }
+              ],
+              [
+              {
+                  text: "Measure type subtext"
+              },
+              {
+                  text: "Lorem ipsum"
+              }
+              ],
+              [
+              {
+                  text: "Measure type overlay (Welsh)"
+              },
+              {
+                  text: "Llorem ipswm"
+              }
+              ],
+              [
+              {
+                  text: "Measure type subtext (Welsh)"
+              },
+              {
+                  text: "Llorem ipswm"
+              }
+              ]              
+          ]
+          }) }}
+
+        {{ govukButton({
+            text: "Approve",
+            href: "/measure_types/confirmation/" + content.id
+        }) }}
+        {{ govukButton({
+            text: "Amend",
+            classes: "govuk-button--secondary govuk-!-margin-left-1",
+            href: "/measure_types/edit/" + content.id
+        }) }}
+        {{ govukButton({
+            text: "Reject",
+            classes: "govuk-button--secondary govuk-!-margin-left-1",
+            href: "/measure_types/reject/" + content.id
+        }) }}
+
+      {% else %}
+        {{ govukInsetText({
+          text: "Use this screen to update the user-centred text overlays for this measure type."
+      }) }}
+
+        {{ govukTable({
+        firstCellIsHeader: true,
+        classes: "govuk-table--mx",
+        caption: "About this measure type",
+        head: [],
+        rows: [
+          [
+            {
+              text: "Measure type"
+            },
+            {
+              text: "103"
+            }
+          ],
+          [
+            {
+              text: "Description"
+            },
+            {
+              text: "Third country duty"
+            }
+          ]
+        ]
+      }) }}
+        <h1 class='govuk-heading-m'>Edit the measure type</h1>
+        {{ govukTextarea({
+        name: "more-detail",
+        id: "more-detail",
+        rows: 3,
+        label: {
+          text: " Measure type description overlay",
+          classes: "govuk-label--s",
+          isPageHeading: true
+        },
+        hint: {
+          text: "Optionally, you may override the measure type description for display within complex measures."
+        }
+      }) }}
+
+        {{ govukTextarea({
+        name: "more-detail",
+        id: "more-detail",
+        rows: 3,
+        label: {
+          text: " Measure type subtext",
+          classes: "govuk-label--s",
+          isPageHeading: true
+        },
+        hint: {
+          text: "Optionally, you may include additional text to help to explain the purpose of the measure type within complex measures."
+        }
+      }) }}
+
+        <details class="govuk-details" data-module="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+      Welsh content equivalents 
     </span>
-  </summary>
-  <div class="govuk-details__text">
-    
-    {{ govukTextarea({
-  name: "more-detail",
-  id: "more-detail",
-  rows: 3,
-  label: {
-    text: " Measure type description overlay (Welsh)",
-    classes: "govuk-label--s",
-    isPageHeading: true
-  },
-  hint: {
-    text: "Optionally, you may override the measure type description for display within complex measures."
-  }
-}) }}
+          </summary>
+          <div class="govuk-details__text">
 
-{{ govukTextarea({
-  name: "more-detail",
-  id: "more-detail",
-  rows: 3,
-  label: {
-    text: " Measure type subtext (Welsh)",
-    classes: "govuk-label--s",
-    isPageHeading: true
-  },
-  hint: {
-    text: "Optionally, you may include additional text to help to explain the purpose of the measure type within complex measures."
-  }
-}) }}
-  </div>
-</details>
+            {{ govukTextarea({
+            name: "more-detail",
+            id: "more-detail",
+            rows: 3,
+            label: {
+              text: " Measure type description overlay (Welsh)",
+              classes: "govuk-label--s",
+              isPageHeading: true
+            },
+            hint: {
+              text: "Optionally, you may override the measure type description for display within complex measures."
+            }
+          }) }}
 
+            {{ govukTextarea({
+            name: "more-detail",
+            id: "more-detail",
+            rows: 3,
+            label: {
+              text: " Measure type subtext (Welsh)",
+              classes: "govuk-label--s",
+              isPageHeading: true
+            },
+            hint: {
+              text: "Optionally, you may include additional text to help to explain the purpose of the measure type within complex measures."
+            }
+          }) }}
+          </div>
+        </details>
 
-{{ govukButton({
-  text: "Update measure type"
-}) }}
-        </div>
+        {% if content.locked %}
+          <p class="govuk-body">
+            <i class="fas fa-lock"></i>&nbsp;&nbsp;&nbsp;This record is locked for editing, as it has already been submitted into workflow.</p>
+        {% else %}
+
+          {{ govukButton({
+          text: "Update measure type",
+          href: "/measure_types/confirmation/" + content.id
+        }) }}
+        {% endif %}
+      {% endif %}
+
     </div>
-
-   
+  </div>
 
 {% endblock %}

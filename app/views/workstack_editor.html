@@ -24,7 +24,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
       <h1 class="govuk-heading-l">My workstack</h1>
-      <p>You have <span class="count nomargin">3</span> items awaiting your attention.</p>
+      <p>You have <span class="count nomargin">2</span> items awaiting your attention.</p>
 
       {{ govukTable({
   firstCellIsHeader: false,
@@ -34,13 +34,10 @@
       text: "Date / time"
     },
     {
+      text: "Item"
+    },
+    {
       text: "Activity"
-    },
-    {
-      text: "Creator"
-    },
-    {
-      text: "Detail"
     },
     {
       text: "Action",
@@ -54,55 +51,30 @@
         classes: "nowrap"
       },
       {
-        text: "Create step"
+        html: "<p><b>Create step</b></p><p>Eu nostrud id culpa voluptate minim duis eu occaecat velit officia aute ...</p>"
       },
       {
-        text: "Marvin Samuels"
+        html: "<p><b>Rejection</b> by Elspeth Marvin</p><p>Description provided doesn't make any sense.</p>"
       },
       {
-        text: "Eu nostrud id culpa voluptate minim duis eu occaecat velit officia aute ..."
-      },
-      {
-        html: '<a href="/content/approve/1">View</a>',
-        classes: "r"
+        html: '<a href="/content/edit/1">View / edit</a>',
+        classes: "r nowrap"
       }
     ],
     [
       {
-        text: "14 Dec 20 09:34",
+        text: "12 Dec 20 14:20",
         classes: "nowrap"
       },
       {
-        text: "Update measure type"
+        html: "<p><b>Update measure type</b></p><p><b>103</b> Third country duty</p>"
       },
       {
-        text: "Bernice Wilkins"
+        html: "<p><b>Rejection</b> by Helen Inkstone</p><p>No, I don't like that.</p>"
       },
       {
-        html: "<b>715</b> Export control - CITES"
-      },
-      {
-        html: '<a href="/measure_types/approve/103">View</a>',
-        classes: "r"
-      }
-    ],
-    [
-      {
-        text: "14 Dec 20 09:34",
-        classes: "nowrap"
-      },
-      {
-        text: "Update document code"
-      },
-      {
-        text: "Bessie Bentall"
-      },
-      {
-        html: "<b>C640</b> Common Veterinary Entry Document (CVED)"
-      },
-      {
-        html: '<a href="/document_codes/approve/C640">View</a>',
-        classes: "r"
+        html: '<a href="/measure_type/edit/103">View / edit</a>',
+        classes: "r nowrap"
       }
     ]
   ]

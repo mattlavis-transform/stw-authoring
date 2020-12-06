@@ -1,0 +1,107 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+
+    {{ govukBreadcrumbs({
+  items: [
+    {
+      text: "Home",
+      href: "/"
+    },
+    {
+      text: "Content",
+      href: "/content"
+    },
+    {
+      text: "Content item " + content.id,
+      href: "/content/edit/" + content.id
+    },
+    {
+      text: "Link content",
+      href: ""
+    }
+  ]
+}) }}
+{% endblock %}
+{% block content %}
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full">
+            <h1 class="govuk-heading-l">Link content item {{ content.id }} to section
+            </h1>
+
+            {{ govukTable({
+  firstCellIsHeader: true,
+  head: [],
+  rows: [
+    [
+      {
+        text: "ID"
+      },
+      {
+        text: "1"
+      }
+    ],
+    [
+      {
+        text: "Step title"
+      },
+      {
+        text: "Some test data"
+      }
+    ],
+    [
+      {
+        text: "Explanatory text"
+      },
+      {
+        text: "Some test data"
+      }
+    ],
+    [
+      {
+        text: "URL"
+      },
+      {
+        text: "https://www.url.com"
+      }
+    ]
+  ]
+}) }}
+
+
+{{ govukSelect({
+  id: "section",
+  name: "section",
+  label: {
+    text: "Select a section",
+    classes: "govuk-label--s"
+  },
+  hint: {
+    text: "Select from one of the available sections"
+  },
+  items: [
+    {
+      value: "0",
+      text: "Please select"
+    },
+    {
+      value: "1",
+      text: "I: Live animals; animal products"
+    }
+  ]
+}) }}
+
+
+{{ govukButton({
+  text: "Create link",
+  href: "/content/link_confirmation/2"
+}) }}
+
+        </div>
+    </div>
+
+{% endblock %}
