@@ -66,6 +66,26 @@ span.count {
     font-size: 19px;
 }
 
+.site_link {
+    padding        : 0px 1em 0px 1em;
+    border-radius  : 4px;
+    font-size      : 12px;
+    text-decoration: none;
+    font-weight    : bold;
+}
+
+.blue {
+    background-color: #0033cc;
+    color           : #fff !important;
+
+}
+
+.red {
+    background-color: #990000;
+    color           : #fff !important;
+
+}
+
 @media (max-width: 40.0525em) {
 
     .govuk-table--m,
@@ -80,5 +100,9 @@ span.count {
 
     .govuk-table__caption--l {
         font-size: 16px;
+    }
+
+    .site_link {
+        font-size: 10px;
     }
 }

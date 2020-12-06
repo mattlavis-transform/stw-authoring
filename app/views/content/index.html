@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  GOV.UK Prototype Kit
+  Content - {{ serviceName }}
 {% endblock %}
 {% block beforeContent %}
 
@@ -77,7 +77,7 @@
           {
             html: '<a href="/content/edit/1">View / edit content</a><br>
               <a href="/content/link/1">Add link to content</a><br>
-              <a href="">Delete content</a>',
+              <a href="/content/delete/1">Delete content</a>',
             classes: "nowrap"
           }
         ],
@@ -104,7 +104,7 @@
           {
             html: '<a href="/content/edit/2">View / edit content</a><br>
               <a href="/content/link/2">Add link to content</a><br>
-              <a href="">Delete content</a>',
+              <a href="/content/delete/2">Delete content</a>',
             classes: "nowrap"
           }
         ]

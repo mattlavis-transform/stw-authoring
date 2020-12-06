@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  GOV.UK Prototype Kit
+  Content - {{ serviceName }}
 {% endblock %}
 
 {% block beforeContent %}
@@ -29,12 +29,12 @@
             <h1 class="govuk-heading-l">{{ content.verb }} content item {{ content.id }}
             </h1>
 
-            {% if content.verb == "Approve or amend" %}
+            {% if content.verb == "Approve or amend change to" %}
 
                 <h2 class="govuk-heading-m">Transaction details</h2>
 
                 {{ govukTable({
-                    firstCellIsHeader: true,
+                    firstCellIsHeader: false,
                     head: [
                         {
                         text: "Field",
@@ -53,12 +53,21 @@
                         {
                             text: "Miriam Housego"
                         }
-                        ],[
+                        ],
+                        [
                         {
                             text: "Date / time"
                         },
                         {
                             text: "12 Jan 21 14:13"
+                        }
+                        ],
+                        [
+                        {
+                            text: "Action"
+                        },
+                        {
+                            text: content.action | capitalise()
                         }
                         ]
                     ]
@@ -67,7 +76,7 @@
                 <h2 class="govuk-heading-m">Content details</h2>
 
                 {{ govukTable({
-                    firstCellIsHeader: true,
+                    firstCellIsHeader: false,
                     head: [
                         {
                         text: "Field",
@@ -79,6 +88,14 @@
                         }
                     ],
                     rows: [
+                        [
+                        {
+                            text: "ID"
+                        },
+                        {
+                            text: content.id
+                        }
+                        ],
                         [
                         {
                             text: "Step title"
@@ -126,11 +143,14 @@
                     text: "Approve",
                     href: "/content/approved/" + content.id
                 }) }}
-                {{ govukButton({
+
+                {% if content.action != "delete" %}
+                    {{ govukButton({
                     text: "Amend",
                     classes: "govuk-button--secondary govuk-!-margin-left-1",
                     href: "/content/edit_elevated/" + content.id
                 }) }}
+                {% endif %}
                 {{ govukButton({
                     text: "Reject",
                     classes: "govuk-button--secondary govuk-!-margin-left-1",
@@ -189,12 +209,12 @@
                         <i class="fas fa-lock"></i>&nbsp;&nbsp;&nbsp;This record is locked for editing, as it has already been submitted into workflow.</p>
                 {% else %}
                     {% if content.privileges == "standard" or content.id == "" %}
-                    {{ govukButton({
+                        {{ govukButton({
                         text: content.button_verb + " content item",
                         href: "/content/confirmation/" + content.id
                     }) }}
                     {% else %}
-                    {{ govukButton({
+                        {{ govukButton({
                         text: content.button_verb + " content item",
                         href: "/content/confirmation_elevated/" + content.id
                     }) }}

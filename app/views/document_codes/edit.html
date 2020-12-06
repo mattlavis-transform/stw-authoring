@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  GOV.UK Prototype Kit
+  Document code {{ content.id }} - {{ serviceName }}
 {% endblock %}
 {% block beforeContent %}
 
@@ -28,32 +28,7 @@
     <div class="govuk-grid-column-full">
       <h1 class="govuk-heading-l">{{ content.verb }} document code {{ content.id }}</h1>
 
-        {{ govukTable({
-        firstCellIsHeader: true,
-        classes: "govuk-table--mx",
-        caption: "About this document code",
-        head: [],
-        rows: [
-          [
-            {
-              text: "Document code"
-            },
-            {
-              text: content.id
-            }
-          ],
-          [
-            {
-              text: "Description"
-            },
-            {
-              text: "National Document: Firearms: Open individual licence or Specific individual licence. Nuclear materials open individual licence or specific individual licence"
-            }
-          ]
-        ]
-      }) }}
-
-      {% if content.verb == "Approve or amend" %}
+      {% if content.verb == "Approve or amend change to" %}
 
         <h2 class="govuk-heading-m">Transaction details</h2>
 
@@ -103,6 +78,14 @@
               }
           ],
           rows: [
+              [
+              {
+                  text: "Document code"
+              },
+              {
+                  text: content.id
+              }
+              ],
               [
               {
                   text: "Document code overlay"
@@ -188,7 +171,64 @@
 
       {% else %}
 
-
+        {{ govukTable({
+        firstCellIsHeader: true,
+        classes: "govuk-table--mx",
+        caption: "About this document code",
+        head: [],
+        rows: [
+          [
+            {
+              text: "Document code"
+            },
+            {
+              text: content.id
+            }
+          ],
+          [
+            {
+              text: "Description"
+            },
+            {
+              text: "National Document: Firearms: Open individual licence or Specific individual licence. Nuclear materials open individual licence or specific individual licence"
+            }
+          ]
+        ]
+      }) }}
+        <details class="govuk-details" data-module="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">Where is this document code used?</span>
+          </summary>
+          <div class="govuk-details__text">
+            {% if certificates %}
+            This document code is used on the following commodity codes:
+            <table class="govuk-table govuk-table--s">
+                <caption class="govuk-table__caption">Dates and amounts</caption>
+                <thead class="govuk-table__head">
+                  <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header">Code</th>
+                    <th scope="col" class="govuk-table__header">Description</th>
+                    <th scope="col" colspan="2" class="govuk-table__header">Show</th>
+                  </tr>
+                </thead>
+                <tbody class="govuk-table__body">
+                  {% for item in certificates %}
+                    {% if item.type == "goods_nomenclature" %}
+                      <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">{{ item.attributes.goods_nomenclature_item_id }}</td>
+                        <td class="govuk-table__cell">{{ item.attributes.description }}</td>
+                        <td class="govuk-table__cell"><a target="_blank" href="https://www.trade-tariff.service.gov.uk/commodities/{{ item.attributes.goods_nomenclature_item_id}}#import" class="site_link blue">OTT</a></td>
+                        <td class="govuk-table__cell"><a target="_blank" href="" class="site_link red">STW</a></td>
+                      </tr>
+                    {% endif %}
+                  {% endfor %}
+                </tbody>
+              </table>
+            {% else %}
+              This document code is not used.
+            {% endif %}
+          </div>
+        </details>
         <h1 class='govuk-heading-m'>{{ content.verb }} the document code</h1>
         {{ govukTextarea({
         name: "more-detail",

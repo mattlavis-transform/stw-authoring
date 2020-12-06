@@ -7,6 +7,12 @@ module.exports = function (env) {
    */
   var filters = {}
 
+  filters.capitalise = function (str) {
+    var _ = require('lodash');
+    str = _.capitalize(str);
+    return (str);
+  }
+
   /* ------------------------------------------------------------------
     add your methods to the filters obj below this comment block:
     @example:

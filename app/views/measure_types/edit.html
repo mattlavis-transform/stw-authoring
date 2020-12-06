@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  GOV.UK Prototype Kit
+  Measure type - {{ serviceName }}
 {% endblock %}
 {% block beforeContent %}
 
@@ -16,7 +16,7 @@
       href: "/measure_types/"
     },  
     {
-      text: "Measure type 103",
+      text: "Measure type " + content.id,
       href: ""
     }
   ]
@@ -27,7 +27,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
       <h1 class="govuk-heading-l">Measure type {{ content.id }}</h1>
-      {% if content.verb == "Approve or amend" %}
+      {% if content.verb == "Approve or amend change to" %}
 
         <h2 class="govuk-heading-m">Transaction details</h2>
 
@@ -77,6 +77,14 @@
               }
           ],
           rows: [
+              [
+              {
+                  text: "Measure type ID"
+              },
+              {
+                  text: content.id
+              }
+              ],
               [
               {
                   text: "Measure type overlay"
@@ -143,7 +151,7 @@
               text: "Measure type"
             },
             {
-              text: "103"
+              text: content.id
             }
           ],
           [

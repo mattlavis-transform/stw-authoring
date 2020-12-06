@@ -1,10 +1,23 @@
 const express = require('express')
+const axios = require('axios');
+const { response } = require('express');
 const router = express.Router()
 
 // Add your routes here - above the module.exports line
 // CONTENT //
 
-// Content (creaete)
+// Content (actions)
+router.get(['/content/actions/:id/'], function (req, res) {
+    var id = req.params["id"];
+    var confirm_delete = req.query["confirm_delete"];
+    if (confirm_delete == "yes") {
+        res.redirect('/content/delete_confirmation/' + id);
+    } else {
+        res.redirect('/content');
+    }
+});
+
+// Content (create)
 router.get(['/content/edit/', '/content/create/', '/content/edit', '/content/create'], function (req, res) {
     console.log("In route");
     content = {
@@ -48,14 +61,49 @@ router.get(['/content/edit/:id', '/content/edit_elevated/:id',], function (req, 
     res.render('content/edit', { 'content': content });
 });
 
-// Content approval screen
-router.get(['/content/approve/:id'], function (req, res) {
-    console.log("Approve");
+
+// Content delete (specific ID)
+router.get(['/content/delete/:id', '/content/delete_elevated/:id',], function (req, res) {
+    var privileges, locked;
+    var url = req.url;
+    var id = req.params["id"];
+
+    if (url.indexOf("edit_elevated") > -1) {
+        console.log("Elevated");
+        privileges = "elevated";
+    } else {
+        privileges = "standard";
+    }
+    if (id == 2) {
+        locked = true;
+    } else {
+        locked = false;
+    }
     content =
     {
-        "verb": "Approve or amend",
-        "button_verb": "Approve",
+        "verb": "Delete",
+        "button_verb": "Delete",
         "id": 1,
+        "locked": locked,
+        "privileges": privileges,
+        "title": "Test data",
+        "explanatory_text": "Explanatory text",
+        "url": "https://www.url.com"
+    }
+
+    res.render('content/delete', { 'content': content });
+});
+
+// Content approval screen
+router.get(['/content/approve/:id/:action'], function (req, res) {
+    var id = req.params["id"];
+    var action = req.params["action"];
+    content =
+    {
+        "verb": "Approve or amend change to",
+        "button_verb": "Approve",
+        "action": action,
+        "id": id,
         "title": "Test data",
         "explanatory_text": "Explanatory text",
         "url": "https://www.url.com"
@@ -116,7 +164,7 @@ router.get(['/content/confirmation',], function (req, res) {
 });
 
 // Content update confirmation
-router.get(['/content/confirmation/:id','/content/confirmation_elevated/:id',], function (req, res) {
+router.get(['/content/confirmation/:id', '/content/confirmation_elevated/:id',], function (req, res) {
     var url = req.url;
     var id = req.params["id"];
 
@@ -137,6 +185,35 @@ router.get(['/content/confirmation/:id','/content/confirmation_elevated/:id',], 
                 "text": "View this content item",
                 "url": "/content/edit/" + id
             },
+            {
+                "text": "View all content",
+                "url": "/content"
+            }
+        ]
+    }
+
+    res.render('content/confirmation', { 'content': content });
+});
+
+
+// Content delete confirmation
+router.get(['/content/delete_confirmation/:id', '/content/delete_confirmation_elevated/:id',], function (req, res) {
+    var url = req.url;
+    var id = req.params["id"];
+
+    if (url.indexOf("elevated") > -1) {
+        message2 = "Changes are now live";
+    } else {
+        message2 = "Change awaiting approval";
+    }
+
+    content =
+    {
+        "id": id,
+        "action": "Delete content",
+        "message1": "Content item " + id + " has been successfully deleted",
+        "message2": message2,
+        "links": [
             {
                 "text": "View all content",
                 "url": "/content"
@@ -283,7 +360,7 @@ router.get(['/measure_types/approve/:id'], function (req, res) {
     console.log("Approve measure type");
     content =
     {
-        "verb": "Approve or amend",
+        "verb": "Approve or amend change to",
         "button_verb": "Approve",
         "id": id,
         "title": "Test data",
@@ -351,6 +428,7 @@ router.get(['/measure_types/rejection/:id',], function (req, res) {
 router.get(['/document_codes/edit/:id'], function (req, res) {
     var locked;
     var id = req.params["id"];
+    var certificate_type_code = id.substr(0, 1);
     if (id == "9100") {
         locked = true;
     } else {
@@ -367,7 +445,12 @@ router.get(['/document_codes/edit/:id'], function (req, res) {
         "overlay_welsh": "Y ddyletswydd sydd ar gyfer trydydd gwledydd"
     }
 
-    res.render('document_codes/edit', { 'content': content });
+    url = 'https://www.trade-tariff.service.gov.uk/api/v2/certificates/search?code=' + id + '&type=' + certificate_type_code + '&page=1'
+    console.log(url)
+    axios.get(url)
+        .then((response) => {
+            res.render('document_codes/edit', { 'content': content, 'certificates': response.data.included });
+        });
 });
 
 // document code edit_approve
@@ -401,7 +484,7 @@ router.get(['/document_codes/approve/:id'], function (req, res) {
     console.log("Approve document code");
     content =
     {
-        "verb": "Approve or amend",
+        "verb": "Approve or amend change to",
         "button_verb": "Approve",
         "id": id,
         "title": "Test data",
