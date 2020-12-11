@@ -100,7 +100,7 @@ router.get(['/content/approve/:id/:action'], function (req, res) {
     var action = req.params["action"];
     content =
     {
-        "verb": "Approve or amend change to",
+        "verb": "Approve change to",
         "button_verb": "Approve",
         "action": action,
         "id": id,
@@ -360,7 +360,7 @@ router.get(['/measure_types/approve/:id'], function (req, res) {
     console.log("Approve measure type");
     content =
     {
-        "verb": "Approve or amend change to",
+        "verb": "Approve change to",
         "button_verb": "Approve",
         "id": id,
         "title": "Test data",
@@ -484,7 +484,7 @@ router.get(['/document_codes/approve/:id'], function (req, res) {
     console.log("Approve document code");
     content =
     {
-        "verb": "Approve or amend change to",
+        "verb": "Approve change to",
         "button_verb": "Approve",
         "id": id,
         "title": "Test data",

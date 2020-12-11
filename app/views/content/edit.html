@@ -29,7 +29,7 @@
             <h1 class="govuk-heading-l">{{ content.verb }} content item {{ content.id }}
             </h1>
 
-            {% if content.verb == "Approve or amend change to" %}
+            {% if content.verb == "Approve change to" %}
 
                 <h2 class="govuk-heading-m">Transaction details</h2>
 
@@ -145,11 +145,11 @@
                 }) }}
 
                 {% if content.action != "delete" %}
-                    {{ govukButton({
-                    text: "Amend",
-                    classes: "govuk-button--secondary govuk-!-margin-left-1",
-                    href: "/content/edit_elevated/" + content.id
-                }) }}
+                    {# {{ govukButton({
+                        text: "Amend",
+                        classes: "govuk-button--secondary govuk-!-margin-left-1",
+                        href: "/content/edit_elevated/" + content.id
+                    }) }} #}
                 {% endif %}
                 {{ govukButton({
                     text: "Reject",

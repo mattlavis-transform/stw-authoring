@@ -27,7 +27,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
       <h1 class="govuk-heading-l">Measure type {{ content.id }}</h1>
-      {% if content.verb == "Approve or amend change to" %}
+      {% if content.verb == "Approve change to" %}
 
         <h2 class="govuk-heading-m">Transaction details</h2>
 
@@ -124,11 +124,11 @@
             text: "Approve",
             href: "/measure_types/confirmation/" + content.id
         }) }}
-        {{ govukButton({
+        {# {{ govukButton({
             text: "Amend",
             classes: "govuk-button--secondary govuk-!-margin-left-1",
             href: "/measure_types/edit/" + content.id
-        }) }}
+        }) }} #}
         {{ govukButton({
             text: "Reject",
             classes: "govuk-button--secondary govuk-!-margin-left-1",
