@@ -73,82 +73,234 @@
               classes: "column1"
               },
               {
-              text: "Value",
-              classes: "column2"
+              text: "Old value",
+              classes: "column3"
+              },
+              {
+              text: "New value",
+              classes: "column3"
               }
           ],
           rows: [
               [
-              {
-                  text: "Document code"
-              },
-              {
-                  text: content.id
-              }
+                {
+                    text: "Document code"
+                },
+                {
+                    text: content.id
+                },
+                {
+                    text: content.id
+                }
               ],
               [
-              {
-                  text: "Document code overlay"
-              },
-              {
-                  text: "Lorem ipsum"
-              }
+                {
+                    text: "Document code overlay"
+                },
+                {
+                    text: "Old lorem ipsum"
+                },
+                {
+                    text: "New lorem ipsum"
+                }
               ],
               [
-              {
-                  text: "Document code subtext"
-              },
-              {
-                  text: "Lorem ipsum"
-              }
+                {
+                    text: "Document code subtext"
+                },
+                {
+                    text: "New lorem ipsum"
+                },
+                {
+                    text: "Old lorem ipsum"
+                }
               ],
               [
-              {
-                  text: "Link URL"
-              },
-              {
-                  text: "https://www.lipsum.com"
-              }
+                {
+                    text: "Link URL"
+                },
+                {
+                    text: "https://www.oldlipsum.com"
+                },
+                {
+                    text: "https://www.newlipsum.com"
+                }
               ],
               [
-              {
-                  text: "Link text"
-              },
-              {
-                  text: "Some text"
-              }
+                {
+                    text: "Link text"
+                },
+                {
+                    text: "Some old text"
+                },
+                {
+                    text: "Some new text"
+                }
               ],
               [
-              {
-                  text: "Document code overlay (Welsh)"
-              },
-              {
-                  text: "Llorem ipswm"
-              }
+                {
+                    text: "Document code overlay (Welsh)"
+                },
+                {
+                    text: "Old llorem ipswm"
+                },
+                {
+                    text: "New llorem ipswm"
+                }
               ],
               [
-              {
-                  text: "Document code subtext (Welsh)"
-              },
-              {
-                  text: "Llorem ipswm"
-              }
+                {
+                    text: "Document code subtext (Welsh)"
+                },
+                {
+                    text: "Old llorem ipswm"
+                },
+                {
+                    text: "New llorem ipswm"
+                }
               ],
               [
-              {
-                  text: "Link URL (Welsh)"
-              },
-              {
-                  text: "https://www.lipswm.com"
-              }
+                {
+                    text: "Link URL (Welsh)"
+                },
+                {
+                    text: "https://www.oldlipswm.com"
+                },
+                {
+                    text: "https://www.newlipswm.com"
+                }
               ],
               [
+                {
+                    text: "Link text (Welsh)"
+                },
+                {
+                    text: "Swm old text"
+                },
+                {
+                    text: "Swm new text"
+                }
+              ]
+              
+          ]
+          }) }}
+
+
+        {{ govukTable({
+          firstCellIsHeader: false,
+          head: [
               {
-                  text: "Link text (Welsh)"
+              text: "Field",
+              classes: "column1"
               },
               {
-                  text: "Swm text"
+              text: "Old value",
+              classes: "column3"
+              },
+              {
+              text: "New value",
+              classes: "column3"
               }
+          ],
+          rows: [
+              [
+                {
+                    text: "Document code"
+                },
+                {
+                    text: content.id
+                },
+                {
+                    text: content.id
+                }
+              ],
+              [
+                {
+                    text: "Document code overlay"
+                },
+                {
+                    text: "Old lorem ipsum"
+                },
+                {
+                    text: "New lorem ipsum"
+                }
+              ],
+              [
+                {
+                    text: "Document code subtext"
+                },
+                {
+                    text: "New lorem ipsum"
+                },
+                {
+                    text: "Old lorem ipsum"
+                }
+              ],
+              [
+                {
+                    text: "Link URL"
+                },
+                {
+                    text: "https://www.oldlipsum.com"
+                },
+                {
+                    text: "https://www.newlipsum.com"
+                }
+              ],
+              [
+                {
+                    text: "Link text"
+                },
+                {
+                    text: "Some old text"
+                },
+                {
+                    text: "Some new text"
+                }
+              ],
+              [
+                {
+                    text: "Document code overlay (Welsh)"
+                },
+                {
+                    text: "Old llorem ipswm"
+                },
+                {
+                    text: "New llorem ipswm"
+                }
+              ],
+              [
+                {
+                    text: "Document code subtext (Welsh)"
+                },
+                {
+                    text: "Old llorem ipswm"
+                },
+                {
+                    text: "New llorem ipswm"
+                }
+              ],
+              [
+                {
+                    text: "Link URL (Welsh)"
+                },
+                {
+                    text: "https://www.oldlipswm.com"
+                },
+                {
+                    text: "https://www.newlipswm.com"
+                }
+              ],
+              [
+                {
+                    text: "Link text (Welsh)"
+                },
+                {
+                    text: "Swm old text"
+                },
+                {
+                    text: "Swm new text"
+                }
               ]
               
           ]

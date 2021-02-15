@@ -13,6 +13,15 @@ module.exports = function (env) {
     return (str);
   }
 
+  filters.adverb = function (action) {
+    if (action == "associate") {
+      str = " with ";
+    } else {
+      str = " from "
+    }
+    return (str);
+  }
+
   /* ------------------------------------------------------------------
     add your methods to the filters obj below this comment block:
     @example:

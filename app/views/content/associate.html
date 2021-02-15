@@ -67,14 +67,13 @@
                             text: "Action"
                         },
                         {
-                            text: content.action | capitalise()
+                            text: content.action | capitalise() + content.action | adverb() + content.object
                         }
                         ]
                     ]
                     }) }}
 
                 <h2 class="govuk-heading-m">Content details</h2>
-                {% if action == "delete" %}
                 {{ govukTable({
                     firstCellIsHeader: false,
                     head: [
@@ -83,14 +82,14 @@
                         classes: "column1"
                         },
                         {
-                        text: "Old value",
+                        text: "Value",
                         classes: "column2"
                         }
                     ],
                     rows: [
                         [
                             {
-                                text: "ID"
+                                text: "Content ID"
                             },
                             {
                                 text: content.id
@@ -98,136 +97,15 @@
                         ],
                         [
                             {
-                                text: "Step title"
+                                text: content.object | capitalise()
                             },
                             {
-                                text: "Old step title"
-                            }
-                        ],
-                        [
-                            {
-                                text: "Explanatory text"
-                            },
-                            {
-                                text: "Old explanatory text"
-                            }
-                        ],
-                        [
-                            {
-                                text: "URL"
-                            },
-                            {
-                                text: "https://www.oldurl.com"
-                            }
-                        ],
-                        [
-                            {
-                                text: "Import heading / subheading"
-                            },
-                            {
-                                text: "2. Prepare your import documents > Subheading"
-                            }
-                        ],
-                        [
-                            {
-                                text: "Export heading / subheading"
-                            },
-                            {
-                                text: "n/a"
+                                text: content.object_id 
                             }
                         ]
                     ]
                     }) }}
-                {% else %}
-
-
-                {{ govukTable({
-                    firstCellIsHeader: false,
-                    head: [
-                        {
-                        text: "Field",
-                        classes: "column1"
-                        },
-                        {
-                        text: "Old value",
-                        classes: "column3"
-                        },
-                        {
-                        text: "New value",
-                        classes: "column3"
-                        }
-                    ],
-                    rows: [
-                        [
-                            {
-                                text: "ID"
-                            },
-                            {
-                                text: content.id
-                            },
-                            {
-                                text: content.id
-                            }
-                        ],
-                        [
-                            {
-                                text: "Step title"
-                            },
-                            {
-                                text: "Old step title"
-                            },
-                            {
-                                text: "New step title"
-                            }
-                        ],
-                        [
-                            {
-                                text: "Explanatory text"
-                            },
-                            {
-                                text: "Old explanatory text"
-                            },
-                            {
-                                text: "New explanatory text"
-                            }
-                        ],
-                        [
-                            {
-                                text: "URL"
-                            },
-                            {
-                                text: "https://www.oldurl.com"
-                            },
-                            {
-                                text: "https://www.url.com"
-                            }
-                        ],
-                        [
-                            {
-                                text: "Import heading / subheading"
-                            },
-                            {
-                                text: "2. Prepare your import documents > Subheading"
-                            },
-                            {
-                                text: "2. Prepare your import documents > Subheading"
-                            }
-                        ],
-                        [
-                            {
-                                text: "Export heading / subheading"
-                            },
-                            {
-                                text: "n/a"
-                            },
-                            {
-                                text: "n/a"
-                            }
-                        ]
-                    ]
-                    }) }}
-
-                {% endif %}
+                
 
                 {{ govukButton({
                     text: "Approve",

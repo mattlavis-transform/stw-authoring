@@ -109,7 +109,29 @@ router.get(['/content/approve/:id/:action'], function (req, res) {
         "url": "https://www.url.com"
     }
 
-    res.render('content/edit', { 'content': content });
+    res.render('content/edit', { 'content': content, 'action': action });
+});
+
+// Content approval screen - associate and dissociate
+router.get(['/content/approve/:id/:object/:object_id/:action'], function (req, res) {
+    var id = req.params["id"];
+    var action = req.params["action"];
+    var object = req.params["object"];
+    var object_id = req.params["object_id"];
+    content =
+    {
+        "verb": "Approve change to",
+        "button_verb": "Approve",
+        "action": action,
+        "id": id,
+        "object": object,
+        "object_id": object_id,
+        "title": "Test data",
+        "explanatory_text": "Explanatory text",
+        "url": "https://www.url.com"
+    }
+
+    res.render('content/associate', { 'content': content, 'action': action });
 });
 
 // Content rejection screen
