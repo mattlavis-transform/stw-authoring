@@ -24,7 +24,8 @@
         <div class="govuk-grid-column-full">
             <h1 class="govuk-heading-l">Document codes</h1>
             {{ govukInsetText({
-                text: "This page lists all of the document codes that are available to augment with user-centred content. Click on the document code description to amend the overlay text in English and Welsh. "
+                text: 'This page lists all of the document codes that are available to augment with user-centred content.
+                Click on "Add overlay" to create new overlay content or on the "Edit" link to update existing content.'
             }) }}
 
             {{ govukTable({
@@ -37,11 +38,14 @@
       text: "ID"
     },
     {
+      text: "Description"
+    },
+    {
       text: "Lock",
       classes: "c"
     },
     {
-      text: "Description"
+      text: "Scope"
     },
     {
       text: "Overlay text"
@@ -53,17 +57,42 @@
   rows: [
     [
       {
+        rowspan: 2,
         text: "9100"
       },
       {
+        rowspan: 2,
+        html: "National Document: Firearms: Open individual licence or Specific individual licence.
+        Nuclear materials open individual licence or specific individual licence<br><a href=''>Add overlay</a>",
+        xhtml: "<a href='/document_codes/edit/9100'>National Document: Firearms: Open individual licence or Specific individual licence. Nuclear materials open individual licence or specific individual licence</a>"
+      },
+      {
         html: '<i class="fas fa-lock"></i>',
+        classes: "c noborder"
+      },
+      {
+        text: "NI",
+        classes: "noborder"
+      },
+      {
+        html: "English overlay text for NI version goes here",
+        classes: "noborder"
+      },
+      {
+        html: 'caniatâd bom a phelydr marwolaeth',
+        classes: "noborder"
+      }
+    ],
+    [
+      {
+        html: '',
         classes: "c"
       },
       {
-        html: "<a href='/document_codes/edit/9100'>National Document: Firearms: Open individual licence or Specific individual licence. Nuclear materials open individual licence or specific individual licence</a>"
+        text: "GB"
       },
       {
-        text: "a bomb and death ray permit"
+        html: "English overlay text for GB version goes here<br><a href=''>Edit</a>&nbsp;|&nbsp;<a href=''>Delete</a>"
       },
       {
         html: 'caniatâd bom a phelydr marwolaeth'
@@ -74,16 +103,83 @@
         text: "C640"
       },
       {
+        html: "Common Health Entry Document for Animals (CHED-A) (as set out in Part 2, Section A of Annex II to Commission Implementing Regulation (EU) 2019/1715 (OJ L 261))",
+        xhtml: "<a href='/document_codes/edit/C640'>Common Health Entry Document for Animals (CHED-A) (as set out in Part 2, Section A of Annex II to Commission Implementing Regulation (EU) 2019/1715 (OJ L 261))</a>"
+      },
+      {
         text: ""
       },
       {
-        html: "<a href='/document_codes/edit/C640'>Common Health Entry Document for Animals (CHED-A) (as set out in Part 2, Section A of Annex II to Commission Implementing Regulation (EU) 2019/1715 (OJ L 261))</a>"
+        text: "GB, NI"
       },
       {
-        text: "Lorem ipsum"
+        html: "Lorem ipsum<br><a href=''>Edit</a>&nbsp;|&nbsp;<a href=''>Delete</a>"
       },
       {
         html: 'Llorem ipswm'
+      }
+    ],
+    [
+      {
+        text: "C641"
+      },
+      {
+        html: "Lorem ipsum dolor<br><a href=''>Add overlay</a>",
+        xhtml: "<a href='/document_codes/edit/C641'>Lorem ipsum dolor</a>"
+      },
+      {
+        text: ""
+      },
+      {
+        text: "GB"
+      },
+      {
+        html: "Lorem ipsum<br><a href=''>Edit</a>&nbsp;|&nbsp;<a href=''>Delete</a>"
+      },
+      {
+        html: 'Llorem ipswm'
+      }
+    ],
+    [
+      {
+        text: "C642"
+      },
+      {
+        html: "Lorem ipsum dolor<br><a href=''>Add overlay</a>",
+        xhtml: "<a href='/document_codes/edit/C641'>Lorem ipsum dolor</a>"
+      },
+      {
+        text: ""
+      },
+      {
+        text: ""
+      },
+      {
+        text: ""
+      },
+      {
+        html: ''
+      }
+    ],
+    [
+      {
+        text: "C643"
+      },
+      {
+        html: "Lorem ipsum dolor<br><a href=''>Add overlay</a>",
+        xhtml: "<a href='/document_codes/edit/C641'>Lorem ipsum dolor</a>"
+      },
+      {
+        text: ""
+      },
+      {
+        text: ""
+      },
+      {
+        text: ""
+      },
+      {
+        html: ''
       }
     ]
   ]

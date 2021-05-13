@@ -4,7 +4,7 @@
 
 module.exports = {
   // Service name used in header. Eg: 'Renew your passport'
-  serviceName: 'STW Workflow Prototype',
+  serviceName: 'STW Content Management',
 
   // Default port that prototype runs on
   port: '3000',

@@ -24,7 +24,8 @@
     <div class="govuk-grid-column-full">
       <h1 class="govuk-heading-l">Measure types</h1>
       {{ govukInsetText({
-                text: "This page lists all of the measure types that are available to augment with user-centred content. Click on the measure type title to amend the overlay text in English and Welsh. "
+                text: 'This page lists all of the measure types that are available to augment with user-centred content.
+                Click on "Add overlay" to create new overlay content or on the "Edit" link to update existing content.'
             }) }}
 
       {{ govukTable({
@@ -37,11 +38,14 @@
       text: "ID"
     },
     {
+      text: "Description"
+    },
+    {
       text: "Lock",
       classes: "c"
     },
     {
-      text: "Description"
+      text: "Scope"
     },
     {
       text: "Overlay text"
@@ -56,14 +60,18 @@
         text: "103"
       },
       {
+        html: "Third country duty<br><a href=''>Add overlay</a>"
+      },
+      {
         html: '<i class="fas fa-lock"></i>',
         classes: "c"
       },
       {
-        html: "<a href='/measure_types/edit/103'>Third country duty</a>"
+        html: 'GB NI',
+        classes: ""
       },
       {
-        text: "The duty that is for third countries"
+        html: "The duty that is for third countries<br><a href=''>Edit</a>&nbsp;|&nbsp;<a href=''>Delete</a>"
       },
       {
         html: 'Y ddyletswydd sydd ar gyfer trydydd gwledydd'
@@ -74,14 +82,104 @@
         text: "105"
       },
       {
+        html: "Third country duty under authorised use<br><a href=''>Add overlay</a>"
+      },
+      {
         html: '',
         classes: "c"
       },
       {
-        html: "<a href='/measure_types/edit/105'>Third country duty under authorised use</a>"
+        html: 'GB NI',
+        classes: ""
       },
       {
-        text: "Lorem ipsum"
+        html: "Lorem ipsum<br><a href=''>Edit</a>&nbsp;|&nbsp;<a href=''>Delete</a>"
+      },
+      {
+        html: 'Llorem ipswm'
+      }
+    ],
+    [
+      {
+        text: "142"
+      },
+      {
+        html: "Tariff preference<br><a href=''>Add overlay</a>"
+      },
+      {
+        html: '',
+        classes: "c"
+      },
+      {
+        html: '',
+        classes: ""
+      },
+      {
+        text: ""
+      },
+      {
+        html: ''
+      }
+    ],
+    [
+      {
+        text: "475",
+        rowspan: 2
+      },
+      {
+        html: "Restriction on entry into free circulation<br><a href=''>Add overlay</a>",
+        rowspan: 2
+      },
+      {
+        html: '',
+        classes: "c noborder"
+      },
+      {
+        html: 'GB',
+        classes: "noborder"
+      },
+      {
+        html: "English text for the GB-specific overlay<br><a href=''>Edit</a>&nbsp;|&nbsp;<a href=''>Delete</a>",
+        classes: "noborder"
+      },
+      {
+        html: 'Welsh text for the GB-specific overlay',
+        classes: "noborder"
+      }
+    ],
+    [
+      {
+        html: '<i class="fas fa-lock"></i>',
+        classes: "c"
+      },
+      {
+        html: 'NI',
+        classes: ""
+      },
+      {
+        text: "English text for the GB-specific overlay"
+      },
+      {
+        html: 'Welsh text for the GB-specific overlay'
+      }
+    ],
+    [
+      {
+        text: "476"
+      },
+      {
+        html: "Restriction on export<br><a href=''>Add overlay</a>"
+      },
+      {
+        html: '',
+        classes: "c"
+      },
+      {
+        html: 'GB NI',
+        classes: ""
+      },
+      {
+        html: "Lorem ipsum<br><a href=''>Edit</a>&nbsp;|&nbsp;<a href=''>Delete</a>"
       },
       {
         html: 'Llorem ipswm'

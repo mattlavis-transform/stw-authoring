@@ -25,7 +25,7 @@
 {% block content %}
 
   <div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
+    <div class="govuk-grid-column-three-quarters">
       <h1 class="govuk-heading-l">{{ content.verb }} measure type {{ content.id }}</h1>
       {% if content.verb == "Approve change to" %}
 
@@ -221,11 +221,34 @@
         }
       }) }}
 
+        {{ govukCheckboxes({
+        idPrefix: "waste",
+        name: "waste",
+        fieldset: {
+            legend: {
+            text: "For which destinations is this measure type overlay relevant?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--s"
+            }
+        },
+        hint: {
+            text: "Some content may be appropriate to the entirety of the UK, while other content may need to be directed at either GB or Northern Ireland. Select all that apply."
+        },
+        items: [
+            {
+            value: "gb",
+            text: "GB (England, Scotland and Wales)"
+            },
+            {
+            value: "ni",
+            text: "Northern Ireland"
+            }
+        ]
+    }) }}
+
         <details class="govuk-details" data-module="govuk-details">
           <summary class="govuk-details__summary">
-            <span class="govuk-details__summary-text">
-      Welsh content equivalents 
-    </span>
+            <span class="govuk-details__summary-text">Welsh content equivalents</span>
           </summary>
           <div class="govuk-details__text">
 

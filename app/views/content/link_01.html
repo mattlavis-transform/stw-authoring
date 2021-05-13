@@ -34,43 +34,35 @@
             </h1>
 
             {{ govukTable({
-  firstCellIsHeader: true,
-  head: [],
-  rows: [
-    [
-      {
-        text: "ID"
-      },
-      {
-        text: "1"
-      }
-    ],
-    [
-      {
-        text: "Step title"
-      },
-      {
-        text: "Some test data"
-      }
-    ],
-    [
-      {
-        text: "Explanatory text"
-      },
-      {
-        text: "Some test data"
-      }
-    ],
-    [
-      {
-        text: "URL"
-      },
-      {
-        text: "https://www.url.com"
-      }
-    ]
-  ]
-}) }}
+              firstCellIsHeader: true,
+              head: [],
+              rows: [
+                [
+                  {
+                    text: "Trader content - does not complete declarations"
+                  },
+                  {
+                    html: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas posuere molestie pulvinar. Nullam iaculis neque eget pretium laoreet. Suspendisse fringilla pharetra mattis. Morbi dictum odio a consequat sodales."
+                  }
+                ],
+                [
+                  {
+                    text: "Trader content - completes declarations"
+                  },
+                  {
+                    html: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas posuere molestie pulvinar. Nullam iaculis neque eget pretium laoreet. Suspendisse fringilla pharetra mattis. Morbi dictum odio a consequat sodales."
+                  }
+                ],
+                [
+                  {
+                    text: "Trade representative content"
+                  },
+                  {
+                    html: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas posuere molestie pulvinar. Nullam iaculis neque eget pretium laoreet. Suspendisse fringilla pharetra mattis. Morbi dictum odio a consequat sodales."
+                  }
+                ]
+              ]
+            }) }}
 
             {{ govukRadios({
   idPrefix: "where-do-you-live",

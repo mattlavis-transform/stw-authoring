@@ -21,12 +21,24 @@ router.get(['/content/actions/:id/'], function (req, res) {
 router.get(['/content/edit/', '/content/create/', '/content/edit', '/content/create'], function (req, res) {
     console.log("In route");
     content = {
-        "verb": "Create",
-        "button_verb": "Create",
+        "verb": "Create new",
+        "button_verb": "Create new",
         "id": ""
     }
 
-    res.render('content/edit', { 'content': content });
+    res.render('content/create', { 'content': content });
+});
+
+// Content (create)
+router.get(['/content/edit_w/', '/content/create_w/', '/content/edit_w', '/content/create_w'], function (req, res) {
+    console.log("In route");
+    content = {
+        "verb": "Create new",
+        "button_verb": "Create new",
+        "id": ""
+    }
+
+    res.render('content/edit_with_welsh', { 'content': content });
 });
 
 // Content edit (specific ID)
@@ -53,9 +65,9 @@ router.get(['/content/edit/:id', '/content/edit_elevated/:id',], function (req, 
         "id": 1,
         "locked": locked,
         "privileges": privileges,
-        "title": "Test data",
-        "explanatory_text": "Explanatory text",
-        "url": "https://www.url.com"
+        "content_trader_non_declarant": "Non-declaring trader content",
+        "content_trader_declarant": "Declaring trader content",
+        "content_agent": "Existing agent content"
     }
 
     res.render('content/edit', { 'content': content });

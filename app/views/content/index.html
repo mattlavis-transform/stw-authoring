@@ -25,7 +25,7 @@
       <h1 class="govuk-heading-l">Content</h1>
 
       {{ govukInsetText({
-          text: "This page lists all of the content that can be assigned to the various objects in the Tariff."
+          html: "This page lists all of the content that can be assigned to the various objects in the Tariff.<br><br><a href='/content/create'>Create new content</a>"
       }) }}
 
       {{ govukTable({
@@ -35,17 +35,18 @@
       captionClasses: "govuk-table__caption--l",
       head: [
         {
-          text: "ID"
-        },
-        {
           text: "Lock",
           classes: "c"
+        },
+        {
+          text: "Page heading"
         },
         {
           text: "Content"
         },
         {
-          text: "Trade type / heading"
+          text: "Priority",
+            classes: "c"
         },
         {
           text: "Linked to"
@@ -57,22 +58,21 @@
       rows: [
         [
           {
-            text: "1"
-          },
-          {
             text: ""
           },
           {
-            html: "<b>Test data</b><br>
-              Explanatory text<br>
-              https://www.url.com"
+            html: "Get your business ready for import"
           },
           {
-            html: "<b>IMPORT</b><br>
-              Get your business ready for import > Before you import, you need to: "
+            html: "Make sure you know what information you need to supply and the accompanying documents required to bring your goods into the country.
+            Missing or inaccurate documents can increase risks, lead to delays and extra costs, or prevent your goods from crossing the border."
           },
           {
-            text: " Not restricted to any database entities "
+            text: "1",
+            classes: "c"
+          },
+          {
+            text: "Not restricted to any database entities"
           },
           {
             html: '<a href="/content/edit/1">View / edit content</a><br>
@@ -83,23 +83,21 @@
         ],
         [
           {
-            text: "2"
-          },
-          {
             html: '<i class="fas fa-lock"></i>',
             classes: "c"
           },
           {
-            html: "<b>Test data 2</b><br>
-              Explanatory text<br>
-              https://www.url.com"
+            html: "Get your business ready for import"
           },
           {
-            html: "<b>IMPORT</b><br>
-              Get your business ready for import > Before you import, you need to: "
+            html: "If you import goods into the UK, you may have to pay import VAT on your goods (https://www.gov.uk/guidance/vat-imports-acquisitions-and-purchases-from-abroad). How much VAT and Customs Duty you pay depends on the value of the goods you’re importing (https://www.gov.uk/guidance/how-to-value-your-imports-for-customs-duty-and-trade-statistics?step-by-step-nav=849f71d1-f290-4a8e-9458-add936efefc5). You may be also able to reduce the amount of duty you pay based on where the goods are from and what you plan to do with them."
           },
           {
-            text: " Not restricted to any database entities "
+            text: "1",
+            classes: "c"
+          },
+          {
+            text: "Not restricted to any database entities"
           },
           {
             html: '<a href="/content/edit/2">View content</a><br>
