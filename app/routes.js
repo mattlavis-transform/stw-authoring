@@ -121,7 +121,7 @@ router.get(['/content/approve/:id/:action'], function (req, res) {
         "url": "https://www.url.com"
     }
 
-    res.render('content/edit', { 'content': content, 'action': action });
+    res.render('content/approve', { 'content': content, 'action': action });
 });
 
 // Content approval screen - associate and dissociate

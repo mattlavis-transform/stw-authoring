@@ -1,0 +1,760 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Content - {{ serviceName }}
+{% endblock %}
+
+{% block beforeContent %}
+
+    {{ govukBreadcrumbs({
+  items: [
+    {
+      text: "Home",
+      href: "/"
+    },
+    {
+      text: "Content",
+      href: "/content"
+    },
+    {
+      text: content.verb + " new content item " + content.id,
+      href: ""
+    }
+  ]
+}) }}
+{% endblock %}
+{% block content %}
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full">
+            <h1 class="govuk-heading-l">{{ content.verb }} content item {{ content.id }}</h1>
+        </div>
+    </div>
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full">
+            {# <p>Use this page to create or edit 'signposting content' for the 'Check How to Import
+            or Export Goods application for Single Trade Window.</p> #}
+
+            {% if content.verb == "Approve change to" %}
+
+                <h2 class="govuk-heading-m">Transaction details</h2>
+
+                {{ govukTable({
+                    firstCellIsHeader: false,
+                    classes: "govuk-table--m",
+                    head: [
+                        {
+                        text: "Field",
+                        classes: "column1"
+                        },
+                        {
+                        text: "Value",
+                        classes: "column2"
+                        }
+                    ],
+                    rows: [
+                        [
+                        {
+                            text: "Author"
+                        },
+                        {
+                            text: "Miriam Housego"
+                        }
+                        ],
+                        [
+                        {
+                            text: "Date / time"
+                        },
+                        {
+                            text: "12 Jan 21 14:13"
+                        }
+                        ],
+                        [
+                        {
+                            text: "Action"
+                        },
+                        {
+                            text: content.action | capitalise()
+                        }
+                        ]
+                    ]
+                    }) }}
+
+                <h2 class="govuk-heading-m">Content details</h2>
+                {% if action == "delete" %}
+                    {{ govukTable({
+                    firstCellIsHeader: false,
+                    classes: "govuk-table--m",
+                    head: [
+                        {
+                        text: "Field",
+                        classes: "column1"
+                        },
+                        {
+                        text: "Old value",
+                        classes: "column2"
+                        }
+                    ],
+                    rows: [
+                        [
+                            {
+                                text: "ID"
+                            },
+                            {
+                                text: content.id
+                            }
+                        ],
+                        [
+                            {
+                                text: "Step title"
+                            },
+                            {
+                                text: "Old step title"
+                            }
+                        ],
+                        [
+                            {
+                                text: "Explanatory text"
+                            },
+                            {
+                                text: "Old explanatory text"
+                            }
+                        ],
+                        [
+                            {
+                                text: "URL"
+                            },
+                            {
+                                text: "https://www.oldurl.com"
+                            }
+                        ],
+                        [
+                            {
+                                text: "Import heading / subheading"
+                            },
+                            {
+                                text: "2. Prepare your import documents > Subheading"
+                            }
+                        ],
+                        [
+                            {
+                                text: "Export heading / subheading"
+                            },
+                            {
+                                text: "n/a"
+                            }
+                        ]
+                    ]
+                    }) }}
+
+                {% elif action == "edit" %}
+
+                    {{ govukTable({
+                    firstCellIsHeader: false,
+                    classes: "govuk-table--m",
+                    head: [
+                        {
+                        text: "Field",
+                        classes: "column1"
+                        },
+                        {
+                        text: "Old value",
+                        classes: "column3"
+                        },
+                        {
+                        text: "New value",
+                        classes: "column3"
+                        }
+                    ],
+                    rows: [
+                        [
+                            {
+                                text: "ID"
+                            },
+                            {
+                                text: content.id
+                            },
+                            {
+                                text: content.id
+                            }
+                        ],
+                        [
+                            {
+                                text: "Page heading"
+                            },
+                            {
+                                text: "Prepare your import documents"
+                            },
+                            {
+                                text: "Prepare your import documents"
+                            }
+                        ],
+                        [
+                            {
+                                text: "Trader content - does not complete declarations"
+                            },
+                            {
+                                text: "Lorem ipsum 1"
+                            },
+                            {
+                                text: "Lorem ipsum 2"
+                            }
+                        ],
+                        [
+                            {
+                                text: "Trader content - completes declarations"
+                            },
+                            {
+                                text: "Lorem ipsum 3"
+                            },
+                            {
+                                text: "Lorem ipsum 4"
+                            }
+                        ],
+                        [
+                            {
+                                text: "Trade representative content"
+                            },
+                            {
+                                text: "Lorem ipsum 5"
+                            },
+                            {
+                                text: "Lorem ipsum 6"
+                            }
+                        ],
+                        [
+                            {
+                                text: "Destinations"
+                            },
+                            {
+                                text: "NI, GB"
+                            },
+                            {
+                                text: "NI, GB"
+                            }
+                        ],
+                        [
+                            {
+                                text: "Origins"
+                            },
+                            {
+                                text: "EU"
+                            },
+                            {
+                                text: "EU"
+                            }
+                        ],
+                        [
+                            {
+                                text: "Priority"
+                            },
+                            {
+                                text: "1"
+                            },
+                            {
+                                text: "1"
+                            }
+                        ]
+                    ]
+                    }) }}
+
+                {% else %}
+                <!-- CREATE NEW //-->
+
+                    {{ govukTable({
+                    firstCellIsHeader: false,
+                    classes: "govuk-table--m",
+                    head: [
+                        {
+                        text: "Field",
+                        classes: "column1"
+                        },
+                        {
+                        text: "Value",
+                        classes: "column3"
+                        }
+                    ],
+                    rows: [
+                        [
+                            {
+                                text: "ID"
+                            },
+                            {
+                                text: content.id
+                            }
+                        ],
+                        [
+                            {
+                                text: "Page heading"
+                            },
+                            {
+                                text: "Prepare your import documents"
+                            }
+                        ],
+                        [
+                            {
+                                text: "Trader content - does not complete declarations"
+                            },
+                            {
+                                text: "Lorem ipsum 1"
+                            }
+                        ],
+                        [
+                            {
+                                text: "Trader content - completes declarations"
+                            },
+                            {
+                                text: "Lorem ipsum 3"
+                            }
+                        ],
+                        [
+                            {
+                                text: "Trade representative content"
+                            },
+                            {
+                                text: "Lorem ipsum 5"
+                            }
+                        ],
+                        [
+                            {
+                                text: "Destinations"
+                            },
+                            {
+                                text: "NI, GB"
+                            }
+                        ],
+                        [
+                            {
+                                text: "Origins"
+                            },
+                            {
+                                text: "EU"
+                            }
+                        ],
+                        [
+                            {
+                                text: "Priority"
+                            },
+                            {
+                                text: "1"
+                            }
+                        ]
+                    ]
+                    }) }}
+
+                {% endif %}
+
+                {{ govukButton({
+                    text: "Approve",
+                    href: "/content/approved/" + content.id
+                }) }}
+
+                {% if content.action != "delete" %}
+                    {# {{ govukButton({
+                        text: "Amend",
+                        classes: "govuk-button--secondary govuk-!-margin-left-1",
+                        href: "/content/edit_elevated/" + content.id
+                    }) }} #}
+                {% endif %}
+                {{ govukButton({
+                    text: "Reject",
+                    classes: "govuk-button--secondary govuk-!-margin-left-1",
+                    href: "/content/reject/" + content.id
+                }) }}
+
+            {% else %}
+
+                <!-- EDIT PAGE STARTS HERE //-->
+
+                <div class="govuk-tabs" data-module="govuk-tabs">
+                    <h2 class="govuk-tabs__title">Contents</h2>
+                    <ul class="govuk-tabs__list">
+                        <li class="govuk-tabs__list-item govuk-tabs__list-item--selected">
+                            <a class="govuk-tabs__tab" href="#content-details">Content details</a>
+                        </li>
+                        <li class="govuk-tabs__list-item">
+                            <a class="govuk-tabs__tab" href="#linkage">Linkage</a>
+                        </li>
+                    </ul>
+                    <div class="govuk-tabs__panel" id="content-details">
+                        <div class="govuk-form-group">
+                            <label class="govuk-label b" for="importHeading">Select the page heading</label>
+
+                            <select class="govuk-select" id="importHeading" name="importHeading">
+                                <option value="" selected disabled>Please select</option>
+                                <option value="1">Prepare your business for importing</option>
+                                <option value="2">Calculate your VAT and Taxes</option>
+                                <option value="3">Reduce and delay your duty payments</option>
+                                <option value="4">Check licences, certificates and any other restrictions that apply to your goods</option>
+                                <option value="5">Check which transportation documents you need</option>
+                                <option value="6">Submit declarations and notifications</option>
+                                <option value="7">Claim a VAT refund</option>
+                                <option value="8">Reclaim duty if you&#39;ve paid the wrong amount</option>
+                                <option value="9">Check which invoices and records you should keep</option>
+                            </select>
+                        </div>
+
+                        {# <div class="govuk-form-group">
+                    <label class="govuk-label b" for="importSubheading">Select the subheading</label>
+                    <select class="govuk-select" id="importSubheading" name="importSubheading">
+                        <option value="" selected disabled>Please select</option>
+                        <option value="1">Before you start importing, you need to:</option>
+                        <option value="3">How much VAT and duty you pay depends on the value of your goods and the rate of duty you need to pay.</option>
+                        <option value="4">You may be able to delay or reduce the amount of duty you pay based on where the goods are from and what you plan to do with them.</option>
+                        <option value="5">You do not need a licence to import these goods</option>
+                        <option value="9">You need to submit these declarations every time the goods enter the UK:</option>
+                        <option value="14">You can claim duty back if you have paid the wrong amount or if your import was rejected.</option>
+                        <option value="16">You or your trade intermediary might need to apply for some licences and certificates</option>
+                        <option value="8">Missing or inaccurate documents can increase risks, lead to delays and extra costs, or even prevent a deal from being completed.</option>
+                        <option value="13">If you&#39;re VAT registered, you can claim back any VAT you paid on the goods you&#39;ve imported.</option>
+                        <option value="15">You must keep records of commercial invoices and any customs paperwork.</option>
+                        <option value="2">You can apply for simplified declaration procedures and for Authorised Economic Operator status. These are most suitable for businesses that import goods regularly.</option>
+                        <option value="6">You need to apply for the following certificates</option>
+                        <option value="10">You need to register to use each of these services if you have not submitted a declaration before.Declarations are documents that outline the details of goods that are being imported or exported. They are needed to get your goods through the UK border.</option>
+                        <option value="7">If your goods are organic, you also need</option>
+                        <option value="11">You need to submit these notifications every time the goods leave the UK:</option>
+                        <option value="12">If the goods are organic, these notifications also need to be submitted:</option>
+                    </select>
+                </div> #}
+
+                        {{ govukTextarea({
+                    name: "content-trader-non-declarant",
+                    id: "content-trader-non-declarant",
+                    rows: 5,
+                    value: content.content_trader_non_declarant,
+                    label: {
+                        text: "Trader content - does not complete declarations",
+                        classes: "govuk-label--s",
+                        isPageHeading: false
+                    },
+                    hint: {
+                        text: "Content displayed for traders who will not be completing own declarations."
+                    }
+                }) }}
+
+                        {{ govukTextarea({
+                    name: "content-trader-declarant",
+                    id: "more-detail",
+                    rows: 5,
+                    value: content.content_trader_declarant,
+                    label: {
+                        text: "Trader content - completes declarations",
+                        classes: "govuk-label--s",
+                        isPageHeading: false
+                    },
+                    hint: {
+                        text: "Content displayed for traders who will complete own declarations."
+                    }
+                }) }}
+
+                        {{ govukTextarea({
+                    name: "content-agent",
+                    id: "content-agent",
+                    rows: 5,
+                    value: content.content_agent,
+                    label: {
+                        text: "Trade representative content",
+                        classes: "govuk-label--s",
+                        isPageHeading: false
+                    },
+                    hint: {
+                        text: "Content displayed for trade representative (e.g. agent / freight forwarder)."
+                    }
+                }) }}
+
+                        <details class="govuk-details" data-module="govuk-details">
+                            <summary class="govuk-details__summary">
+                                <span class="govuk-details__summary-text">Welsh content equivalents</span>
+                            </summary>
+                            <div class="govuk-details__text">
+                                {{ govukTextarea({
+                    name: "content-trader-declarant",
+                    id: "more-detail",
+                    rows: 5,
+                    value: content.title,
+                    label: {
+                        text: "Trader content - completes declarations (Welsh)",
+                        classes: "govuk-label--s",
+                        isPageHeading: false
+                    },
+                    hint: {
+                        text: "Content displayed for traders who will complete own declarations."
+                    }
+                }) }}
+
+                                {{ govukTextarea({
+                    name: "content-trader-non-declarant",
+                    id: "content-trader-non-declarant",
+                    rows: 5,
+                    value: content.explanatory_text,
+                    label: {
+                        text: "Trader content - does not complete declarations (Welsh)",
+                        classes: "govuk-label--s",
+                        isPageHeading: false
+                    },
+                    hint: {
+                        text: "Content displayed for traders who will not be completing own declarations."
+                    }
+                }) }}
+
+                                {{ govukTextarea({
+                    name: "content-agent",
+                    id: "content-agent",
+                    rows: 5,
+                    value: content.url,
+                    label: {
+                        text: "Trade representative content (Welsh)",
+                        classes: "govuk-label--s",
+                        isPageHeading: false
+                    },
+                    hint: {
+                        text: "Content displayed for trade representative (e.g. agent / freight forwarder)."
+                    }
+                }) }}
+                            </div>
+                        </details>
+
+                        <div class="govuk-form-group" style="display:none">
+                            <fieldset class="govuk-fieldset" aria-describedby="tradeType-hint">
+                                <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+                                    <h1 class="govuk-fieldset__heading">Select a trade type</h1>
+                                </legend>
+                                <span id="tradeType-hint" class="govuk-hint">Identify if this content is to apply to import trade, export trade or both. If you do not explicitly link the step to any other entities, then the step will apply to the specified trade type(s) under all circumstances.<br><br>You must select at least one of these options.</span>
+                                <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                                    <div class="govuk-checkboxes__item">
+                                        <input class="govuk-checkboxes__input" id="tradeType" name="tradeType" type="checkbox" value="import" data-aria-controls="conditional-tradeType">
+                                        <label class="govuk-label govuk-checkboxes__label" for="tradeType">Import</label>
+                                    </div>
+                                    <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-tradeType">
+
+                                        <div class="govuk-form-group">
+                                            <label class="govuk-label" for="importHeading">Select the import heading</label>
+
+                                            <select class="govuk-select" id="importHeading" name="importHeading">
+                                                <option value="" selected disabled>Please select</option>
+                                                <option value="1">1. Prepare your business for importing</option>
+                                                <option value="2">2. Calculate your VAT and Taxes</option>
+                                                <option value="3">3. Reduce and delay your duty payments</option>
+                                                <option value="4">4. Check licences, certificates and any other restrictions that apply to your goods</option>
+                                                <option value="5">5. Check which transportation documents you need</option>
+                                                <option value="6">6. Submit declarations and notifications</option>
+                                                <option value="7">7. Claim a VAT refund</option>
+                                                <option value="8">8. Reclaim duty if you&#39;ve paid the wrong amount</option>
+                                                <option value="9">9. Check which invoices and records you should keep</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="govuk-form-group">
+                                            <label class="govuk-label" for="importSubheading">Select the import subheading</label>
+                                            <select class="govuk-select" id="importSubheading" name="importSubheading">
+
+                                                <option value="" selected disabled>Please select</option>
+
+                                                <option value="1">Before you start importing, you need to:</option>
+
+                                                <option value="3">How much VAT and duty you pay depends on the value of your goods and the rate of duty you need to pay.</option>
+
+                                                <option value="4">You may be able to delay or reduce the amount of duty you pay based on where the goods are from and what you plan to do with them.</option>
+
+                                                <option value="5">You do not need a licence to import these goods</option>
+
+                                                <option value="9">You need to submit these declarations every time the goods enter the UK:</option>
+
+                                                <option value="14">You can claim duty back if you have paid the wrong amount or if your import was rejected.</option>
+
+                                                <option value="16">You or your trade intermediary might need to apply for some licences and certificates</option>
+
+                                                <option value="8">Missing or inaccurate documents can increase risks, lead to delays and extra costs, or even prevent a deal from being completed.</option>
+
+                                                <option value="13">If you&#39;re VAT registered, you can claim back any VAT you paid on the goods you&#39;ve imported.</option>
+
+                                                <option value="15">You must keep records of commercial invoices and any customs paperwork.</option>
+
+                                                <option value="2">You can apply for simplified declaration procedures and for Authorised Economic Operator status. These are most suitable for businesses that import goods regularly.</option>
+
+                                                <option value="6">You need to apply for the following certificates</option>
+
+                                                <option value="10">You need to register to use each of these services if you have not submitted a declaration before.Declarations are documents that outline the details of goods that are being imported or exported. They are needed to get your goods through the UK border.</option>
+
+                                                <option value="7">If your goods are organic, you also need</option>
+
+                                                <option value="11">You need to submit these notifications every time the goods leave the UK:</option>
+
+                                                <option value="12">If the goods are organic, these notifications also need to be submitted:</option>
+
+                                            </select>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="govuk-checkboxes__item">
+                                        <input class="govuk-checkboxes__input" id="tradeType-2" name="tradeType" type="checkbox" value="export" data-aria-controls="conditional-tradeType-2">
+                                        <label class="govuk-label govuk-checkboxes__label" for="tradeType-2">Export</label>
+
+                                    </div>
+
+                                    <div class="govuk-checkboxes__conditional govuk-checkboxes__conditional--hidden" id="conditional-tradeType-2">
+
+                                        <div class="govuk-form-group">
+                                            <label class="govuk-label" for="exportHeading">Select the export heading</label>
+
+                                            <select class="govuk-select" id="exportHeading" name="exportHeading">
+
+                                                <option value="" selected disabled>Please select</option>
+
+                                            </select>
+                                        </div>
+
+                                        <div class="govuk-form-group">
+                                            <label class="govuk-label" for="exportSubheading">Select the export subheading</label>
+
+                                            <select class="govuk-select" id="exportSubheading" name="exportSubheading">
+
+                                                <option value="" selected disabled>Please select</option>
+
+                                            </select>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </fieldset>
+
+                        </div>
+
+                        {{ govukCheckboxes({
+                    idPrefix: "waste",
+                    name: "waste",
+                    fieldset: {
+                        legend: {
+                        text: "For which destinations is this content relevant?",
+                        isPageHeading: true,
+                        classes: "govuk-fieldset__legend--s"
+                        }
+                    },
+                    hint: {
+                        text: "Some content may be appropriate to the entirety of the UK, while other content may need to be directed at either GB or Northern Ireland. Select all that apply."
+                    },
+                    items: [
+                        {
+                        value: "gb",
+                        text: "GB (England, Scotland and Wales)"
+                        },
+                        {
+                        value: "ni",
+                        text: "Northern Ireland"
+                        }
+                    ]
+                }) }}
+
+                        {% set specificHtml %}
+                        {{ govukInput({
+  id: "specific_countries",
+  name: "specific_countries",
+  type: "text",
+  classes: "govuk-!-width-two-thirds",
+  label: {
+    text: "Enter the 2-digit country IDs of the countries here"
+  },
+  hint: {
+    text: "Separate multiple countries by commas"
+  }
+}) }}
+                        {% endset -%}
+
+                        {{ govukRadios({
+  idPrefix: "origin",
+  name: "origin",
+  fieldset: {
+    legend: {
+      text: "To which origins does this content apply?",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--s b"
+    }
+  },
+  xhint: {
+    text: "Select one option."
+  },
+  items: [
+    {
+      value: "all",
+      text: "All origins"
+    },
+    {
+      value: "eu",
+      text: "European Union countries"
+    },
+    {
+      value: "specific",
+      text: "One or more countries",
+      conditional: {
+        html: specificHtml
+      }
+    }
+  ]
+}) }}
+
+                        {{ govukInput({
+            label: {
+                text: "Priority",
+                classes: "govuk-label--s"
+            },
+            hint: {
+                text: "Higher prioritised items appear nearer the top"
+            },
+            classes: "govuk-input--width-5 ",
+            id: "width-20",
+            name: "width-20"
+        }) }}
+
+                        {% if content.locked %}
+                            <p class="govuk-body">
+                                <i class="fas fa-lock"></i>&nbsp;&nbsp;&nbsp;This record is locked for editing, as it has already been submitted into workflow.</p>
+                        {% else %}
+                            {% if content.privileges == "standard" or content.id == "" %}
+                                {{ govukButton({
+                        text: content.button_verb + " content item",
+                        href: "/content/confirmation/" + content.id
+                    }) }}
+                            {% else %}
+                                {{ govukButton({
+                        text: content.button_verb + " content item",
+                        href: "/content/confirmation_elevated/" + content.id
+                    }) }}
+                            {% endif %}
+                        {% endif %}
+
+                    {% endif %}
+                </div>
+                <div class="govuk-tabs__panel govuk-tabs__panel--hidden" id="linkage">
+                    <h2 class="govuk-heading-l">Linkage</h2>
+
+                    <h2 class="govuk-heading-m">Links to sections</h2>
+                    <p class="govuk-body">This content is not linked to any sections.</p>
+
+                    <p class="govuk-body govuk-!-margin-bottom-6">
+                        <a href="/content/link/section/1" class="govuk-link">Link content to section</a>
+                    </p>
+
+                    <h2 class="govuk-heading-m">Links to chapters</h2>
+                    <p class="govuk-body">This content is not linked to any chapters.</p>
+
+                    <p class="govuk-body govuk-!-margin-bottom-6">
+                        <a href="/content/link/chapter/1" class="govuk-link">Link content to chapter</a>
+                    </p>
+
+                    <h2 class="govuk-heading-m">Links to commodity codes</h2>
+                    <p class="govuk-body">This content is not linked to any commodities.</p>
+
+                    <p class="govuk-body govuk-!-margin-bottom-6">
+                        <a href="/content/link/commodity-code/1" class="govuk-link">Link content to commodity</a>
+                    </p>
+
+                </div>
+            </div>
+
+        </div>
+        
+
+            </div>
+
+        {% endblock %}
