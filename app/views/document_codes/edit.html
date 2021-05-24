@@ -3,32 +3,31 @@
 {% block pageTitle %}
   Document code {{ content.id }} - {{ serviceName }}
 {% endblock %}
+
 {% block beforeContent %}
-
   {{ govukBreadcrumbs({
-  items: [
-    {
-      text: "Home",
-      href: "/"
-    },
-    {
-      text: "Document codes",
-      href: "/document_codes/"
-    },  
-    {
-      text: "Document code " + content.id,
-      href: ""
-    }
-  ]
-}) }}
+    items: [
+      {
+        text: "Home",
+        href: "/"
+      },
+      {
+        text: "Document codes",
+        href: "/document_codes/"
+      },  
+      {
+        text: "Document code " + content.id,
+        href: ""
+      }
+    ]
+  }) }}
 {% endblock %}
+
 {% block content %}
-
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-three-quarters">
-      <h1 class="govuk-heading-l">{{ content.verb }} document code {{ content.id }}</h1>
-
-      {% if content.verb == "Approve change to" %}
+  {% if content.verb == "Approve change to" %}
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l">{{ content.verb }} document code {{ content.id }}</h1>
 
         <h2 class="govuk-heading-m">Transaction details</h2>
 
@@ -309,163 +308,87 @@
             text: "Approve",
             href: "/document_codes/approved/" + content.id
         }) }}
-        {# {{ govukButton({
-            text: "Amend",
-            classes: "govuk-button--secondary govuk-!-margin-left-1",
-            href: "/document_codes/edit_approve/" + content.id
-        }) }} #}
         {{ govukButton({
             text: "Reject",
             classes: "govuk-button--secondary govuk-!-margin-left-1",
             href: "/document_codes/reject/" + content.id
         }) }}
+      </div>
+    </div>
 
-      {% else %}
+  {% else %}
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l">{{ content.verb }} document code {{ content.id }}</h1>
 
         {{ govukTable({
-        firstCellIsHeader: true,
-        classes: "govuk-table--mx",
-        caption: "About this document code",
-        head: [],
-        rows: [
-          [
-            {
-              text: "Document code"
-            },
-            {
-              text: content.id
-            }
-          ],
-          [
-            {
-              text: "Description"
-            },
-            {
-              text: "National Document: Firearms: Open individual licence or Specific individual licence. Nuclear materials open individual licence or specific individual licence"
-            }
+          firstCellIsHeader: true,
+          classes: "govuk-table--mx",
+          caption: "About this document code",
+          head: [],
+          rows: [
+            [
+              {
+                text: "Document code"
+              },
+              {
+                text: content.id
+              }
+            ],
+            [
+              {
+                text: "Description"
+              },
+              {
+                text: "National Document: Firearms: Open individual licence or Specific individual licence. Nuclear materials open individual licence or specific individual licence"
+              }
+            ]
           ]
-        ]
-      }) }}
-        <details class="govuk-details" data-module="govuk-details" style="display:none">
-          <summary class="govuk-details__summary">
-            <span class="govuk-details__summary-text">Where is this document code used?</span>
-          </summary>
-          <div class="govuk-details__text">
-            {% if certificates %}
-            This document code is used on the following commodity codes:
-            <table class="govuk-table govuk-table--s">
-                <caption class="govuk-table__caption">Dates and amounts</caption>
-                <thead class="govuk-table__head">
-                  <tr class="govuk-table__row">
-                    <th scope="col" class="govuk-table__header">Code</th>
-                    <th scope="col" class="govuk-table__header">Description</th>
-                    <th scope="col" colspan="2" class="govuk-table__header">Show</th>
-                  </tr>
-                </thead>
-                <tbody class="govuk-table__body">
-                  {% for item in certificates %}
-                    {% if item.type == "goods_nomenclature" %}
-                      <tr class="govuk-table__row">
-                        <td class="govuk-table__cell">{{ item.attributes.goods_nomenclature_item_id }}</td>
-                        <td class="govuk-table__cell">{{ item.attributes.description }}</td>
-                        <td class="govuk-table__cell">
-                          <a target="_blank" href="https://www.trade-tariff.service.gov.uk/commodities/{{ item.attributes.goods_nomenclature_item_id}}#import" class="site_link blue">OTT</a>
-                        </td>
-                        <td class="govuk-table__cell">
-                          <a target="_blank" href="" class="site_link red">STW</a>
-                        </td>
-                      </tr>
-                    {% endif %}
-                  {% endfor %}
-                </tbody>
-              </table>
-            {% else %}
-              This document code is not used.
-            {% endif %}
-          </div>
-        </details>
+        }) }}
+      </div>
+    </div>
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
         <h1 class='govuk-heading-m'>{{ content.verb }} the document code</h1>
         {{ govukTextarea({
-        name: "more-detail",
-        id: "more-detail",
-        rows: 3,
-        label: {
-          text: " Document code description overlay",
-          classes: "govuk-label--s",
-          isPageHeading: true
-        },
-        hint: {
-          text: "Optionally, you may override the document code description for display within complex measures."
-        }
-      }) }}
-
-        {{ govukTextarea({
-        name: "more-detail",
-        id: "more-detail",
-        rows: 3,
-        label: {
-          text: "Document code subtext",
-          classes: "govuk-label--s",
-          isPageHeading: true
-        },
-        hint: {
-          text: "Optionally, you may include additional text to help to explain the purpose of the document code within complex measures."
-        }
-      }) }}
-
-        {{ govukInput({
-        label: {
-          text: "Link URL",
-          classes: "govuk-label--s",
-          isPageHeading: falsee
-        },
-        id: "event-name",
-        name: "event-name",
-        classes: "govuk-!-width-two-thirds",
-        hint: {
-          text: "If you want to link to an external resource, specify that here. If you do not sepcify a Welsh URL,
-          then this URL will also be used for the Welsh version."
+          name: "document-code-overlay-english",
+          id: "more-detail",
+          rows: 15,
+          label: {
+            text: "Document code description overlay",
+            classes: "govuk-label--s",
+            isPageHeading: true
+          },
+          hint: {
+            text: "You may override the document code description for display within complex measures."
           }
-      }) }}
+        }) }}
 
-        {{ govukInput({
-        label: {
-          text: "Link text",
-          classes: "govuk-label--s",
-          isPageHeading: falsee
-        },
-        id: "event-name",
-        name: "event-name",
-        classes: "govuk-!-width-two-thirds",
-        hint: {
-          text: "If you specify a link, then this is the text that will appear on that link."
-          }
+        {{ govukCheckboxes({
+          idPrefix: "destinations",
+          name: "destinations",
+          fieldset: {
+              legend: {
+              text: "For which destinations is this document code overlay relevant?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--s"
+              }
+          },
+          hint: {
+              text: "Some content may be appropriate to the entirety of the UK, while other content may need to be directed at either GB or Northern Ireland. Select all that apply."
+          },
+          items: [
+              {
+              value: "gb",
+              text: "GB (England, Scotland and Wales)"
+              },
+              {
+              value: "ni",
+              text: "Northern Ireland"
+              }
+          ]
       }) }}
-
-      {{ govukCheckboxes({
-        idPrefix: "waste",
-        name: "waste",
-        fieldset: {
-            legend: {
-            text: "For which destinations is this document code overlay relevant?",
-            isPageHeading: true,
-            classes: "govuk-fieldset__legend--s"
-            }
-        },
-        hint: {
-            text: "Some content may be appropriate to the entirety of the UK, while other content may need to be directed at either GB or Northern Ireland. Select all that apply."
-        },
-        items: [
-            {
-            value: "gb",
-            text: "GB (England, Scotland and Wales)"
-            },
-            {
-            value: "ni",
-            text: "Northern Ireland"
-            }
-        ]
-    }) }}
 
         <details class="govuk-details" data-module="govuk-details">
           <summary class="govuk-details__summary">
@@ -476,9 +399,9 @@
           <div class="govuk-details__text">
 
             {{ govukTextarea({
-              name: "more-detail",
-              id: "more-detail",
-              rows: 3,
+              name: "document-code-overlay-welsh",
+              id: "document-code-overlay-welsh",
+              rows: 15,
               label: {
                 text: "Document code description overlay (Welsh)",
                 classes: "govuk-label--s",
@@ -487,45 +410,6 @@
               hint: {
                 text: "Optionally, you may override the document code description for display within complex measures."
               }
-            }) }}
-
-            {{ govukTextarea({
-                name: "more-detail",
-                id: "more-detail",
-                rows: 3,
-                label: {
-                  text: " Document code subtext (Welsh)",
-                  classes: "govuk-label--s",
-                  isPageHeading: true
-                },
-                hint: {
-                  text: "Optionally, you may include additional text to help to explain the purpose of the document code within complex measures."
-                }
-              }) }}
-
-            {{ govukInput({
-              label: {
-                text: "Link URL",
-                classes: "govuk-label--s",
-                isPageHeading: falsee
-              },
-              id: "event-name",
-              name: "event-name",
-              classes: "govuk-!-width-two-thirds",
-              hint: {
-                text: "Leave this blank to use the URL specified in the English version of the text"
-                }
-            }) }}
-
-            {{ govukInput({
-              label: {
-                text: "Link text",
-                classes: "govuk-label--s",
-                isPageHeading: falsee
-              },
-              id: "event-name",
-              name: "event-name",
-              classes: "govuk-!-width-two-thirds"
             }) }}
 
           </div>
@@ -543,6 +427,9 @@
 
       {% endif %}
 
+    </div>
+    <div class="govuk-grid-column-one-third">
+      {% include "../includes/markdown.html" %}
     </div>
   </div>
 
