@@ -353,6 +353,7 @@
         <h1 class='govuk-heading-m'>{{ content.verb }} the document code</h1>
         {{ govukTextarea({
           name: "document-code-overlay-english",
+          classes: "govuk-!-margin-bottom-0",
           id: "more-detail",
           rows: 15,
           label: {
@@ -364,6 +365,7 @@
             text: "You may override the document code description for display within complex measures."
           }
         }) }}
+        <p class="preview govuk-body-s"><a href="#">Preview</a></p>
 
         {{ govukCheckboxes({
           idPrefix: "destinations",

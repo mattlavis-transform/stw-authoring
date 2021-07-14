@@ -116,5 +116,10 @@ span.count {
 }
 
 .noborder {
-    border-bottom:0px !important
+    border-bottom: 0px !important
+}
+
+.preview {
+    position: relative;
+    top     : -0.5em;
 }
